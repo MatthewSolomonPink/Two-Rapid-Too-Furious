@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerBehaviour : MonoBehaviour
@@ -32,6 +34,7 @@ public class PlayerBehaviour : MonoBehaviour
         {
             mainCam.enabled = false;
             otherCam.enabled = true;
+            //Add a transition            
             cam = otherCam.transform;
         }
         Movement();
@@ -54,6 +57,22 @@ public class PlayerBehaviour : MonoBehaviour
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
             characterController.Move(moveDir.normalized * speed * Time.deltaTime);
+        }
+    }
+
+    //Change Scene
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("") && nPCBehaviour.IsInteracted())
+        {
+            int currentScene = SceneManager.GetActiveScene().buildIndex;
+            if(currentScene > 2)
+            {
+                currentScene = 0;
+            }
+            //ToDo
+            //1.Add transition
+            SceneManager.LoadSceneAsync(currentScene + 1);
         }
     }
 }

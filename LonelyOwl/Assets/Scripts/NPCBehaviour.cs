@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class NPCBehaviour : MonoBehaviour
 {
-
-
     bool isInteracted = false;
     private void OnTriggerEnter(Collider other)
     {

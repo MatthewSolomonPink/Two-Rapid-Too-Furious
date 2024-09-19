@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void addJournalText(int text_Index)
+     public void addJournalText(int text_Index)
     {
         switch (text_Index)
         {

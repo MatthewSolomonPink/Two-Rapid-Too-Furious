@@ -60,13 +60,13 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
-    //Change Scene
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("") && nPCBehaviour.IsInteracted())
+        if (other.CompareTag("NextScene") && nPCBehaviour.IsInteracted())
         {
+            Debug.Log("Get into the stairs");
             int currentScene = SceneManager.GetActiveScene().buildIndex;
-            if(currentScene > 2)
+            if (currentScene > 2)
             {
                 currentScene = 0;
             }

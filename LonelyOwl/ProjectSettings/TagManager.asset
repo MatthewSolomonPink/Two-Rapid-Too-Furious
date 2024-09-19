@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - NPC
+  - NextScene
   layers:
   - Default
   - TransparentFX
@@ -12,8 +13,8 @@ TagManager:
   - NPC
   - Water
   - UI
-  - 
-  - 
+  - Player
+  - Debug
   - 
   - 
   - 

@@ -2,15 +2,20 @@ using UnityEngine;
 
 public class NPCBehaviour : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+
+    bool isInteracted = false;
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.CompareTag("Player"))
+        {
+            //Need to do some action
+            isInteracted=true;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public bool IsInteracted()
     {
-        
+        return isInteracted; 
     }
 }

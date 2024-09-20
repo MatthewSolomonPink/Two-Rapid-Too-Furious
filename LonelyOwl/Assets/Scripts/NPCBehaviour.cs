@@ -17,7 +17,6 @@ public class NPCBehaviour : MonoBehaviour
         yield return new WaitForSeconds(1f);
         playerBehaviour.fadeOut = true;
         playerBehaviour.CameraTransition();
-        //playerBehaviour.fadeOut = true;
     }    
 
     private void OnTriggerEnter(Collider other)
@@ -30,16 +29,6 @@ public class NPCBehaviour : MonoBehaviour
             StartCoroutine(AddTransition());
         }
     }
-
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if(other.CompareTag("Player"))
-    //    {
-    //        playerBehaviour.fadeOut = true;
-    //        playerBehaviour.CameraTransition();
-    //        StartCoroutine(AddTransition());
-    //    }
-    //}
 
     public bool IsInteracted()
     {

@@ -17,42 +17,75 @@ public class PlayerBehaviour : MonoBehaviour
     float vertical;
     float horizontal;
 
+    public CanvasGroup canvasGroup;
+    public bool fadeIn = false;
+    public bool fadeOut = false;
+    public float timeToFade = 0.1f;
+
     NPCBehaviour nPCBehaviour;
     new Rigidbody rigidbody;
 
-    //[SerializeField] GameObject stepRayUpper;
-    //[SerializeField] GameObject stepRayLower;
-    //[SerializeField] float stepHeight = 0.3f;
-    //[SerializeField] float stepSmooth = 0.1f;
+    [SerializeField] GameObject stepRayUpper;
+    [SerializeField] GameObject stepRayLower;
+    [SerializeField] float stepHeight = 0.3f;
+    [SerializeField] float stepSmooth = 0.1f;
 
     public void Start()
     {
         nPCBehaviour = FindAnyObjectByType<NPCBehaviour>();
         rigidbody = GetComponent<Rigidbody>();
-        //stepRayUpper.transform.position = new Vector3(stepRayUpper.transform.position.x, 
-        //    stepHeight, stepRayUpper.transform.position.z);
+        stepRayUpper.transform.position = new Vector3(stepRayUpper.transform.position.x,
+            stepHeight, stepRayUpper.transform.position.z);
     }
 
     private void Update()
     {
         //ToDo
         //1.Need to check game status and restrict movement accordingly.
+        Movement();
+        StepClimb();
+    }
 
+    public void CameraTransition()
+    {
+        if (fadeIn == true)
+        {            
+            if (canvasGroup.alpha < 1)
+            {
+                canvasGroup.alpha += timeToFade;
+                if (canvasGroup.alpha >= 1)
+                {
+                    fadeIn = false;
+                }
+            }
+        }
+        if (fadeOut == true)
+        {
+            if (canvasGroup.alpha >= 0)
+            {
+                canvasGroup.alpha -= timeToFade;
+                if (canvasGroup.alpha == 0)
+                {
+                    fadeOut = false;
+                }
+            }
+        }
+    }
+
+    public void CheckCamera()
+    {
         if (nPCBehaviour.IsInteracted())
         {
             mainCam.SetActive(false);
-            otherCam.SetActive(true);
-            //Add a transition            
+            otherCam.SetActive(true);           
             cam = otherCam.transform;
         }
-        else if(otherCam && !nPCBehaviour.IsInteracted())
+        if (otherCam && !nPCBehaviour.IsInteracted())
         {
             otherCam.SetActive(false);
             mainCam.SetActive(true);
-            cam = mainCam.transform;          
+            cam = mainCam.transform;
         }
-        Movement();
-        //StepClimb();
     }
 
     void Movement()
@@ -94,54 +127,54 @@ public class PlayerBehaviour : MonoBehaviour
                 currentScene = 0;
             }
             nPCBehaviour.ResetIsInteracted();
+            CheckCamera();
             //ToDo
             //SceneManager.LoadSceneAsync(currentScene + 1);
         }
     }
 
-    //void StepClimb()
-    //{
-    //    RaycastHit hitLower;
-    //    if(Physics.Raycast(stepRayLower.transform.position, 
-    //        transform.TransformDirection(Vector3.forward),
-    //        out hitLower, 0.1f))
-    //    {
-    //        Debug.Log("Hello world");
-    //        RaycastHit hitUpper;
-    //        if (!Physics.Raycast(stepRayUpper.transform.position,
-    //            transform.TransformDirection(Vector3.forward),
-    //            out hitUpper, 0.2f))
-    //        {
-    //            rigidbody.position -= new Vector3(0f, -stepSmooth, 0f);
-    //        }
-    //    }
+    void StepClimb()
+    {
+        RaycastHit hitLower;
+        if (Physics.Raycast(stepRayLower.transform.position,
+            transform.TransformDirection(Vector3.forward),
+            out hitLower, 0.1f))
+        {
+            RaycastHit hitUpper;
+            if (!Physics.Raycast(stepRayUpper.transform.position,
+                transform.TransformDirection(Vector3.forward),
+                out hitUpper, 0.2f))
+            {
+                rigidbody.position -= new Vector3(0f, -stepSmooth, 0f);
+            }
+        }
 
-    //    RaycastHit hitLower45;
-    //    if (Physics.Raycast(stepRayLower.transform.position,
-    //        transform.TransformDirection(1.5f,0,1),
-    //        out hitLower45, 0.1f))
-    //    {
-    //        RaycastHit hitUpper45;
-    //        if (!Physics.Raycast(stepRayUpper.transform.position,
-    //            transform.TransformDirection(1.5f, 0, 1),
-    //            out hitUpper45, 0.2f))
-    //        {
-    //            rigidbody.position -= new Vector3(0f, -stepSmooth, 0f);
-    //        }
-    //    }
+        RaycastHit hitLower45;
+        if (Physics.Raycast(stepRayLower.transform.position,
+            transform.TransformDirection(1.5f, 0, 1),
+            out hitLower45, 0.1f))
+        {
+            RaycastHit hitUpper45;
+            if (!Physics.Raycast(stepRayUpper.transform.position,
+                transform.TransformDirection(1.5f, 0, 1),
+                out hitUpper45, 0.2f))
+            {
+                rigidbody.position -= new Vector3(0f, -stepSmooth, 0f);
+            }
+        }
 
-    //    RaycastHit hitLowerMinus45;
-    //    if (Physics.Raycast(stepRayLower.transform.position,
-    //        transform.TransformDirection(-1.5f, 0, 1),
-    //        out hitLowerMinus45, 0.1f))
-    //    {
-    //        RaycastHit hitUpperMinus45;
-    //        if (!Physics.Raycast(stepRayUpper.transform.position,
-    //            transform.TransformDirection(-1.5f, 0, 1),
-    //            out hitUpperMinus45, 0.2f))
-    //        {
-    //            rigidbody.position -= new Vector3(0f, -stepSmooth, 0f);
-    //        }
-    //    }
-    //}
+        RaycastHit hitLowerMinus45;
+        if (Physics.Raycast(stepRayLower.transform.position,
+            transform.TransformDirection(-1.5f, 0, 1),
+            out hitLowerMinus45, 0.1f))
+        {
+            RaycastHit hitUpperMinus45;
+            if (!Physics.Raycast(stepRayUpper.transform.position,
+                transform.TransformDirection(-1.5f, 0, 1),
+                out hitUpperMinus45, 0.2f))
+            {
+                rigidbody.position -= new Vector3(0f, -stepSmooth, 0f);
+            }
+        }
+    }
 }

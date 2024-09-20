@@ -16,4 +16,9 @@ public class NPCBehaviour : MonoBehaviour
     {
         return isInteracted; 
     }
+
+    public void ResetIsInteracted()
+    {
+        isInteracted = false;
+    }
 }

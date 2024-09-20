@@ -37,7 +37,6 @@ public class PlayerBehaviour : MonoBehaviour
     {
         //ToDo
         //1.Need to check game status and restrict movement accordingly.
-        //2. Make the camera switch after NPC collision to move down to next level.
 
         if (nPCBehaviour.IsInteracted())
         {
@@ -50,8 +49,7 @@ public class PlayerBehaviour : MonoBehaviour
         {
             otherCam.SetActive(false);
             mainCam.SetActive(true);
-            cam = mainCam.transform;
-            //Add a transition            
+            cam = mainCam.transform;          
         }
         Movement();
         //StepClimb();
@@ -90,7 +88,6 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (other.CompareTag("NextScene") && nPCBehaviour.IsInteracted())
         {
-            Debug.Log("Get outtt");
             int currentScene = SceneManager.GetActiveScene().buildIndex;
             if (currentScene > 2)
             {
@@ -98,7 +95,6 @@ public class PlayerBehaviour : MonoBehaviour
             }
             nPCBehaviour.ResetIsInteracted();
             //ToDo
-            //1.Add transition
             //SceneManager.LoadSceneAsync(currentScene + 1);
         }
     }

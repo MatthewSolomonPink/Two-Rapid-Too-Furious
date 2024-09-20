@@ -20,7 +20,7 @@ public class PlayerBehaviour : MonoBehaviour
     public CanvasGroup canvasGroup;
     public bool fadeIn = false;
     public bool fadeOut = false;
-    public float timeToFade = 0.1f;
+    public float timeToFade = 1f;
 
     NPCBehaviour nPCBehaviour;
     new Rigidbody rigidbody;

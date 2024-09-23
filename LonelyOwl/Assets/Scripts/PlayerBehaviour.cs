@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 using static UnityEditor.Searcher.SearcherWindow.Alignment;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 
 public class PlayerBehaviour : MonoBehaviour
 {
@@ -44,6 +46,40 @@ public class PlayerBehaviour : MonoBehaviour
         //1.Need to check game status and restrict movement accordingly.
         Movement();
         StepClimb();
+    }
+
+    public void OnHoot(InputAction.CallbackContext context)
+    {
+        if (!context.performed)
+        {
+            return;
+        }
+
+        if (context.interaction is MultiTapInteraction)
+        {
+            Debug.Log("Singing");
+        }
+        else if (context.interaction is PressInteraction)
+        {
+            Debug.Log("Hooting");
+        }
+    }
+
+    public void OnSing(InputAction.CallbackContext context)
+    {
+        if (!context.performed)
+        {
+            return;
+        }
+
+        if (context.interaction is MultiTapInteraction)
+        {
+            Debug.Log("Singing");
+        }
+        else if (context.interaction is PressInteraction)
+        {
+            Debug.Log("Hooting");
+        }
     }
 
     public void CameraTransition()

@@ -359,7 +359,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 19.96, y: 4.52, z: 0}
+  m_Size: {x: 19.96, y: 4.52, z: 2}
   m_Center: {x: 0.000049591064, y: 0.04, z: -0.0000038146973}
 --- !u!1 &186553205
 GameObject:
@@ -401,7 +401,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 19.96, y: 4.52, z: 0}
+  m_Size: {x: 19.96, y: 4.52, z: 2}
   m_Center: {x: 0.000049591064, y: 0.04, z: -0.0000038146973}
 --- !u!54 &186553207
 Rigidbody:
@@ -1252,7 +1252,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 19.96, y: 4.52, z: 0}
+  m_Size: {x: 19.96, y: 4.52, z: 2}
   m_Center: {x: 0.000049591064, y: 0.04, z: -0.0000038146973}
 --- !u!54 &521511527
 Rigidbody:
@@ -1786,7 +1786,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 19.96, y: 4.52, z: 0}
+  m_Size: {x: 19.96, y: 4.52, z: 2}
   m_Center: {x: 0.000049591064, y: 0.04, z: -0.0000038146973}
 --- !u!54 &967450363
 Rigidbody:
@@ -2283,6 +2283,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1521909326673126996, guid: 2ac8b6ba2576b2d49aee104b30da841d, type: 3}
+      propertyPath: m_DefaultActionMap
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3278776889281169566, guid: 2ac8b6ba2576b2d49aee104b30da841d, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2574,7 +2578,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 19.96, y: 4.52, z: 0}
+  m_Size: {x: 19.96, y: 4.52, z: 2}
   m_Center: {x: 0.000049591064, y: 0.04, z: -0.0000038146973}
 --- !u!54 &1564969765
 Rigidbody:
@@ -2817,7 +2821,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 19.96, y: 4.52, z: 0}
+  m_Size: {x: 19.96, y: 4.52, z: 2}
   m_Center: {x: 0.000049591064, y: 0.04, z: -0.0000038146973}
 --- !u!54 &1877168156
 Rigidbody:

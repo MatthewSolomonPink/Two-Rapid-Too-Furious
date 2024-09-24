@@ -6,6 +6,9 @@ public class JournalOptionBehavior : MonoBehaviour
 {
     bool interactable;
     InputAction interactAction;
+
+    private TextMeshPro floatingText;
+    private Color c;
     [SerializeField] TextMeshProUGUI optionText;
     [SerializeField] JournalManager journalManager;
 
@@ -14,6 +17,9 @@ public class JournalOptionBehavior : MonoBehaviour
     {
         interactable = false;
         interactAction = InputSystem.actions.FindAction("Interact");
+
+        floatingText  = GetComponent<TextMeshPro>();
+        c = floatingText.color; 
     }
 
     // Update is called once per frame
@@ -35,6 +41,8 @@ public class JournalOptionBehavior : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             interactable = true;
+            floatingText.fontStyle = FontStyles.Bold;
+            floatingText.color = c * 4;
         }
     }
 
@@ -42,7 +50,9 @@ public class JournalOptionBehavior : MonoBehaviour
     {
         if (other.CompareTag("Player")) 
         { 
-            interactable = false; 
+            interactable = false;
+            floatingText.fontStyle = FontStyles.Normal;
+            floatingText.color = c;
         }
     }
 }

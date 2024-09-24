@@ -142,12 +142,8 @@ MonoBehaviour:
   otherCam: {fileID: 0}
   speed: 10
   turnSmoothTime: 0.1
-  canvasGroup: {fileID: 0}
-  fadeIn: 0
-  fadeOut: 0
-  timeToFade: 1
-  stepRayUpper: {fileID: 0}
-  stepRayLower: {fileID: 0}
+  stepRayUpper: {fileID: 4317499679861063372}
+  stepRayLower: {fileID: 2275185531348376692}
   stepHeight: 0.3
   stepSmooth: 0.1
 --- !u!143 &3254402831222653733
@@ -170,7 +166,7 @@ CharacterController:
   serializedVersion: 3
   m_Height: 1
   m_Radius: 0.5
-  m_SlopeLimit: 45
+  m_SlopeLimit: 90
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001

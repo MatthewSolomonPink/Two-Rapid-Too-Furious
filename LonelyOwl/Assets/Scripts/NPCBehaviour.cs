@@ -5,13 +5,14 @@ using UnityEngine;
 public class NPCBehaviour : MonoBehaviour
 {
     bool isInteracted = false;
+    
     PlayerBehaviour playerBehaviour;
-    [SerializeField] Canvas canvas;
+    
     new Animation animation;
     void Start()
     {
         playerBehaviour = FindFirstObjectByType<PlayerBehaviour>();
-        animation = canvas.GetComponent<Animation>();
+        animation = GetComponentInChildren<Canvas>().GetComponent<Animation>();
     }
 
     public IEnumerator AddTransition()

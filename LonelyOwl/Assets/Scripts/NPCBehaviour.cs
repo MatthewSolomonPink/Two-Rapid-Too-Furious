@@ -1,31 +1,42 @@
 using System.Collections;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class NPCBehaviour : MonoBehaviour
 {
     bool isInteracted = false;
     PlayerBehaviour playerBehaviour;
-
+    [SerializeField] Canvas canvas;
+    new Animation animation;
     void Start()
     {
         playerBehaviour = FindFirstObjectByType<PlayerBehaviour>();
+        animation = canvas.GetComponent<Animation>();
     }
 
     public IEnumerator AddTransition()
     {
-        playerBehaviour.CheckCamera();
-        yield return new WaitForSeconds(0.3f);
-        playerBehaviour.fadeOut = true;
-        playerBehaviour.CameraTransition();
-    }    
+        yield return new WaitForSeconds(1);
+        if (animation.isPlaying)
+        {
+            playerBehaviour.CheckCamera();
+            animation.Stop();
+            animation.Play("FadeOut");
+        }
+        playerBehaviour.SetPlayerMovable(true);
+    }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player") && !isInteracted)
         {
-            isInteracted=true;
-            playerBehaviour.fadeIn = true;
-            playerBehaviour.CameraTransition();
+            isInteracted = true;
+            playerBehaviour.SetPlayerMovable(false);
+            if (animation.isPlaying)
+            {
+                animation.Stop();
+            }
+            animation.Play("FadeIn");
             StartCoroutine(AddTransition());
         }
     }

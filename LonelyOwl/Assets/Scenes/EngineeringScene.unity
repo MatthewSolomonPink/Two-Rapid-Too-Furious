@@ -645,7 +645,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 0
   m_Interactable: 1
-  m_BlocksRaycasts: 0
+  m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!1 &447937000
 GameObject:
@@ -1060,6 +1060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4de6057fb7347294bbdb247eeec0389b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 1990667159}
 --- !u!1 &1474743386 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2275185531348376692, guid: 2ac8b6ba2576b2d49aee104b30da841d, type: 3}
@@ -1723,6 +1724,7 @@ GameObject:
   - component: {fileID: 1990667159}
   - component: {fileID: 1990667158}
   - component: {fileID: 1990667157}
+  - component: {fileID: 1990667161}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1814,6 +1816,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!111 &1990667161
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990667156}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 5f713f0feaeccc14da6e7119464a675e, type: 2}
+  - {fileID: 7400000, guid: 067a49144753c1342bef5ee8d6c897d1, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_UpdateMode: 0
+  m_CullingType: 0
 --- !u!1 &2117062262
 GameObject:
   m_ObjectHideFlags: 0

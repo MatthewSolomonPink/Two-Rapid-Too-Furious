@@ -92,16 +92,7 @@
                     "id": "0254f0f9-8111-43aa-9461-ea7ef5c747e7",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Press(behavior=2)",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Sing",
-                    "type": "Button",
-                    "id": "8a194fac-a222-4cf8-b21a-af0e130ebab2",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "MultiTap(tapCount=4)",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 }
             ],
@@ -499,17 +490,6 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Hoot",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a044559a-a92e-44a0-a0e7-1ce466453385",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Sing",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -110,8 +110,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     void Movement()
     {
-        vertical = Input.GetAxisRaw("Vertical");
-        horizontal = Input.GetAxisRaw("Horizontal");
+        vertical = Input.GetAxisRaw("Horizontal");
+        horizontal = Input.GetAxisRaw("Vertical");
         Vector3 direction = new Vector3(horizontal, 0f, vertical);
 
         if (direction.magnitude >= 0.1f)

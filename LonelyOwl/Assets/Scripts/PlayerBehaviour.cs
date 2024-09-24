@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using static UnityEditor.Searcher.SearcherWindow.Alignment;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
+using System.Collections;
 
 public class PlayerBehaviour : MonoBehaviour
 {
@@ -32,6 +33,8 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] float stepHeight = 0.3f;
     [SerializeField] float stepSmooth = 0.1f;
 
+    bool singing = false;
+
     public void Start()
     {
         nPCBehaviour = FindAnyObjectByType<NPCBehaviour>();
@@ -50,16 +53,12 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void OnHoot(InputAction.CallbackContext context)
     {
-        if (!context.performed)
+        if (!context.performed || singing)
         {
             return;
         }
 
-        if (context.interaction is MultiTapInteraction)
-        {
-            Debug.Log("Singing");
-        }
-        else if (context.interaction is PressInteraction)
+        if (context.interaction is PressInteraction)
         {
             Debug.Log("Hooting");
         }
@@ -75,11 +74,21 @@ public class PlayerBehaviour : MonoBehaviour
         if (context.interaction is MultiTapInteraction)
         {
             Debug.Log("Singing");
+            if (!singing)
+            {
+                StartCoroutine("Sing");
+            }
         }
-        else if (context.interaction is PressInteraction)
-        {
-            Debug.Log("Hooting");
-        }
+    }
+
+    IEnumerator Sing()
+    {
+        singing = true;
+
+        //TODO: singing stuff here
+
+        yield return new WaitForSeconds(4);
+        singing = false;
     }
 
     public void CameraTransition()

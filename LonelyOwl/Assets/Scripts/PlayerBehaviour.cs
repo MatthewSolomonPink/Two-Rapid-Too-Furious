@@ -19,10 +19,7 @@ public class PlayerBehaviour : MonoBehaviour
     float vertical;
     float horizontal;
 
-    public CanvasGroup canvasGroup;
-    public bool fadeIn = false;
-    public bool fadeOut = false;
-    public float timeToFade = 1f;
+    bool canPlayerMove = true;
 
     NPCBehaviour nPCBehaviour;
     new Rigidbody rigidbody;
@@ -44,8 +41,11 @@ public class PlayerBehaviour : MonoBehaviour
     {
         //ToDo
         //1.Need to check game status and restrict movement accordingly.
-        Movement();
-        StepClimb();
+        if (canPlayerMove)
+        {
+            Movement();
+            StepClimb();
+        }
     }
 
     public void OnHoot(InputAction.CallbackContext context)
@@ -82,32 +82,6 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
-    public void CameraTransition()
-    {
-        if (fadeIn == true)
-        {            
-            if (canvasGroup.alpha < 1)
-            {
-                canvasGroup.alpha += timeToFade;
-                if (canvasGroup.alpha >= 1)
-                {
-                    fadeIn = false;
-                }
-            }
-        }
-        if (fadeOut == true)
-        {
-            if (canvasGroup.alpha >= 0)
-            {
-                canvasGroup.alpha -= timeToFade;
-                if (canvasGroup.alpha == 0)
-                {
-                    fadeOut = false;
-                }
-            }
-        }
-    }
-
     public void CheckCamera()
     {
         if (nPCBehaviour.IsInteracted())
@@ -122,6 +96,16 @@ public class PlayerBehaviour : MonoBehaviour
             mainCam.SetActive(true);
             cam = mainCam.transform;
         }
+    }
+
+    public bool CanPlayerMove()
+    {
+        return canPlayerMove;
+    }
+
+    public void SetPlayerMovable(bool canPlayerMove)
+    {
+        this.canPlayerMove = canPlayerMove;
     }
 
     void Movement()

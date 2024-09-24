@@ -33,8 +33,6 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] float stepHeight = 0.3f;
     [SerializeField] float stepSmooth = 0.1f;
 
-    bool singing = false;
-
     public void Start()
     {
         nPCBehaviour = FindAnyObjectByType<NPCBehaviour>();
@@ -53,7 +51,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void OnHoot(InputAction.CallbackContext context)
     {
-        if (!context.performed || singing)
+        if (!context.performed)
         {
             return;
         }
@@ -62,33 +60,6 @@ public class PlayerBehaviour : MonoBehaviour
         {
             Debug.Log("Hooting");
         }
-    }
-
-    public void OnSing(InputAction.CallbackContext context)
-    {
-        if (!context.performed)
-        {
-            return;
-        }
-
-        if (context.interaction is MultiTapInteraction)
-        {
-            Debug.Log("Singing");
-            if (!singing)
-            {
-                StartCoroutine("Sing");
-            }
-        }
-    }
-
-    IEnumerator Sing()
-    {
-        singing = true;
-
-        //TODO: singing stuff here
-
-        yield return new WaitForSeconds(4);
-        singing = false;
     }
 
     public void CameraTransition()

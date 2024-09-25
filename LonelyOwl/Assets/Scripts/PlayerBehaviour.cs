@@ -4,7 +4,14 @@ using UnityEngine.SceneManagement;
 using static UnityEditor.Searcher.SearcherWindow.Alignment;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
+using System.Collections.Generic;
+using System;
+using UnityEditor;
+using System.IO;
+using System.Linq;
+using UnityEditor.SceneManagement;
 using System.Collections;
+using UnityEngine.Audio;
 
 public class PlayerBehaviour : MonoBehaviour
 {
@@ -30,12 +37,89 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] float stepHeight = 0.3f;
     [SerializeField] float stepSmooth = 0.1f;
 
+    private class HootNote : IComparable
+    {
+        public HootNote(string name, AudioClip clip)
+        {
+            Name = name;
+            Clip = clip;
+        }
+
+        public string Name { get; }
+        public AudioClip Clip { get; }
+
+        public int Octave
+        {
+            get
+            {
+                return int.Parse(Name[Name.Length - 1].ToString());
+            }
+        }
+
+        public int CompareTo(object obj)
+        {
+            var o = obj as HootNote;
+
+            var notes = new List<string> { "Gb", "Ab", "Bb", "Db",  "Eb" };
+            var noteOrder = new List<string>();
+
+            int octave = 1;
+            do
+            {
+                for (int j = 0; j < notes.Count; j++)
+                {
+                    if (notes[j] == "Db") octave++;
+
+                    noteOrder.Add(notes[j] + octave.ToString());
+                }
+            } while (octave < 5);
+
+            return noteOrder.IndexOf(Name).CompareTo(noteOrder.IndexOf(o.Name)); 
+        }
+    }
+    private List<HootNote> playerHootNotes = new List<HootNote>();
+    private List<HootNote> bigOwlHootNotes = new List<HootNote>();
+    private AudioSource playerAudioSource;
+    private bool playerIsPlayingThroughScale = true;
+    private int playerScaleNotesPlayed = 0;
+    private HootNote lastNotePlayed;
+    private List<float> timesPlayerScaleNotesPlayed = new List<float>();
+
+    private bool bigOwlReadyToSing = false;
+    public AudioSource BigOwlAudioSource;
+
     public void Start()
     {
         nPCBehaviour = FindAnyObjectByType<NPCBehaviour>();
         rigidbody = GetComponent<Rigidbody>();
         stepRayUpper.transform.position = new Vector3(stepRayUpper.transform.position.x,
             stepHeight, stepRayUpper.transform.position.z);
+
+        var hootFiles = Directory.GetFiles("Assets\\Sounds\\Generic_Hoots", "*.wav", SearchOption.TopDirectoryOnly);
+
+        foreach (var f in hootFiles)
+        {
+            // Turns out AudioClip has a name property lol
+            //var name = f.Split("\\")[3].Replace(".wav", "");
+            var clip = AssetDatabase.LoadAssetAtPath<AudioClip>(f);
+            var hoot = new HootNote(clip.name, clip);
+
+            if (hoot.Octave >= 3)
+            {
+                playerHootNotes.Add(hoot);
+            }
+            else
+            {
+                bigOwlHootNotes.Add(hoot);
+            }
+        }
+        playerHootNotes.Sort();
+        bigOwlHootNotes.Sort();
+
+        playerAudioSource = GetComponent<AudioSource>() == null ? gameObject.AddComponent<AudioSource>() : GetComponent<AudioSource>();
+
+        // TODO: this should be set to the audiosource of the big owl. Adding on Player for now.
+        BigOwlAudioSource = gameObject.AddComponent<AudioSource>();
     }
 
     private void Update()
@@ -58,7 +142,63 @@ public class PlayerBehaviour : MonoBehaviour
 
         if (context.interaction is PressInteraction)
         {
-            Debug.Log("Hooting");
+            AudioClip c = null;
+            if (playerIsPlayingThroughScale)
+            {
+                c = playerHootNotes[playerScaleNotesPlayed].Clip;
+                timesPlayerScaleNotesPlayed.Add(Time.realtimeSinceStartup);
+                playerScaleNotesPlayed++;
+                playerIsPlayingThroughScale = playerScaleNotesPlayed < playerHootNotes.Count;
+                if (!playerIsPlayingThroughScale)
+                {
+                    // Start big owl singing
+                    float initialDelay = 1.0f;
+                    float currentDelay = 0.0f;
+                    StartCoroutine(playBigOwlSoundWithDelay(bigOwlHootNotes[0].Clip, initialDelay, false));
+                    for (int i = 1; i < timesPlayerScaleNotesPlayed.Count; i++)
+                    {
+                        currentDelay += timesPlayerScaleNotesPlayed[i] - timesPlayerScaleNotesPlayed[i - 1];
+                        StartCoroutine(playBigOwlSoundWithDelay(bigOwlHootNotes[i].Clip, initialDelay + currentDelay, i == timesPlayerScaleNotesPlayed.Count - 1));
+                    }
+                }
+            }
+            else if(bigOwlReadyToSing)
+            {
+                HootNote hootNote;
+                if(lastNotePlayed != null)
+                {
+                    do
+                    {
+                        hootNote = playerHootNotes[UnityEngine.Random.Range(0, playerHootNotes.Count)];
+                    } while (hootNote.Name == lastNotePlayed.Name);
+
+                }
+                else
+                {
+                    hootNote = playerHootNotes[UnityEngine.Random.Range(0, playerHootNotes.Count)];
+                }
+                c = hootNote.Clip;
+                Debug.Log(hootNote.Name);
+                lastNotePlayed = hootNote;
+
+                var bassHootNote = bigOwlHootNotes[UnityEngine.Random.Range(0, bigOwlHootNotes.Count)];
+                playerAudioSource.PlayOneShot(bassHootNote.Clip);
+            }
+            if (c != null) {
+                playerAudioSource.PlayOneShot(c);
+            }
+
+
+        }
+    }
+
+    IEnumerator playBigOwlSoundWithDelay(AudioClip clip, float delay, bool isLastInScale)
+    {
+        yield return new WaitForSeconds(delay);
+        BigOwlAudioSource.PlayOneShot(clip);
+        if (isLastInScale)
+        {
+            bigOwlReadyToSing = true;
         }
     }
 

@@ -178,7 +178,6 @@ public class PlayerBehaviour : MonoBehaviour
                     hootNote = playerHootNotes[UnityEngine.Random.Range(0, playerHootNotes.Count)];
                 }
                 c = hootNote.Clip;
-                Debug.Log(hootNote.Name);
                 lastNotePlayed = hootNote;
 
                 var bassHootNote = bigOwlHootNotes[UnityEngine.Random.Range(0, bigOwlHootNotes.Count)];

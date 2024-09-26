@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class Spin : MonoBehaviour
 {
-    [SerializeField] private float rotateSpeed  = 0.5f;
+    [SerializeField] private float rotateSpeed = 0.5f;
     [SerializeField] private bool rotateRight = false;
     [SerializeField] private bool isSpinning = false;
-    
+
     void Update()
     {
         if (isSpinning)
@@ -18,5 +18,10 @@ public class Spin : MonoBehaviour
     public void SetIsSpinning(bool s)
     {
         isSpinning = s;
+    }
+    
+    public void SetSpeed(float speed)
+    {
+        this.rotateSpeed = speed;
     }
 }

@@ -137,14 +137,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e8575992920fe41a5f6e2c28373283, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterController: {fileID: 0}
+  characterController: {fileID: 3254402831222653733}
   cam: {fileID: 0}
   mainCam: {fileID: 0}
   otherCam: {fileID: 0}
-  speed: 6
+  speed: 10
   turnSmoothTime: 0.1
-  stepRayUpper: {fileID: 0}
-  stepRayLower: {fileID: 0}
+  stepRayUpper: {fileID: 4317499679861063372}
+  stepRayLower: {fileID: 2275185531348376692}
   stepHeight: 0.3
   stepSmooth: 0.1
   BigOwlAudioSource: {fileID: 0}

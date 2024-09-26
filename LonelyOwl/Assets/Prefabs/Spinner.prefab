@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 3270007293703007828}
   m_Layer: 0
   m_Name: Spinner
-  m_TagString: Untagged
+  m_TagString: spin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -257,3 +257,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateSpeed: 100
   rotateRight: 0
+  isSpinning: 0

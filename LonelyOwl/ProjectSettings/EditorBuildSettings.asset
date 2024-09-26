@@ -11,6 +11,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StageOne[WIP].unity
     guid: 349ca18719722d3429ac8bfcedfed518
+  - enabled: 1
+    path: Assets/Scenes/Journal2.unity
+    guid: 9a08d7ba9fdb19a44b0c2e1cc2a9222f
+  - enabled: 1
+    path: Assets/Scenes/Journal3.unity
+    guid: e23eb978578c1ce43bede0ceccf07e14
+  - enabled: 1
+    path: Assets/Scenes/Journal4.unity
+    guid: f8a2c452f01b0b24f8f9dfcb9bd78b0b
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

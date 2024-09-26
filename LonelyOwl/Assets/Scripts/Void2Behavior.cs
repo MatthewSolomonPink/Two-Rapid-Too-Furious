@@ -60,10 +60,9 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         canBreath = false;
         timesBreathed++;
-        
-        //breathing behavior
 
-        yield return new WaitForSeconds(1f);
+        //breathing behavior
+        yield return new WaitForSeconds(0.5f);
         canBreath = true;
     }
 

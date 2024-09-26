@@ -21,6 +21,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     public GameObject mainCam;
     public GameObject otherCam;
+    public Transform lookAtPoint;
 
     public float speed = 6f;
     public float turnSmoothTime = 0.1f;
@@ -139,7 +140,7 @@ public class PlayerBehaviour : MonoBehaviour
         //Adjust billboard to face camera
         if (billboard.enabled)
         {
-            billboard.transform.LookAt(mainCam.transform.position);
+            billboard.transform.LookAt(lookAtPoint.position);
             billboard.transform.RotateAround(billboard.transform.position, billboard.transform.up, 180f);
         }
     }

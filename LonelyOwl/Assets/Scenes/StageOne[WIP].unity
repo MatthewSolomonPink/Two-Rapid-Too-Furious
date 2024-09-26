@@ -1304,6 +1304,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8393583034300837868, guid: 2ac8b6ba2576b2d49aee104b30da841d, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 2080729733}
+    - target: {fileID: 8393583034300837868, guid: 2ac8b6ba2576b2d49aee104b30da841d, type: 3}
+      propertyPath: mainCam
+      value: 
+      objectReference: {fileID: 2080729730}
+    - target: {fileID: 8393583034300837868, guid: 2ac8b6ba2576b2d49aee104b30da841d, type: 3}
+      propertyPath: otherCam
+      value: 
+      objectReference: {fileID: 2080729730}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

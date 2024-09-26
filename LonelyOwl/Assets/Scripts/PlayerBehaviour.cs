@@ -12,6 +12,7 @@ using System.Linq;
 using UnityEditor.SceneManagement;
 using System.Collections;
 using UnityEngine.Audio;
+using TMPro;
 
 public class PlayerBehaviour : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class PlayerBehaviour : MonoBehaviour
     float turnSmoothVelocity;
     float vertical;
     float horizontal;
+
+    [SerializeField] TextMeshProUGUI billboard;
 
     bool canPlayerMove = true;
     bool void2Breathing = false;
@@ -131,6 +134,13 @@ public class PlayerBehaviour : MonoBehaviour
         {
             Movement();
             StepClimb();
+        }
+
+        //Adjust billboard to face camera
+        if (billboard.enabled)
+        {
+            billboard.transform.LookAt(mainCam.transform.position);
+            billboard.transform.RotateAround(billboard.transform.position, billboard.transform.up, 180f);
         }
     }
 
@@ -238,14 +248,15 @@ public class PlayerBehaviour : MonoBehaviour
         this.void2Breathing = breathing;
     }
 
-    public void ActivatePlayerBillboard(string text)
+    public void ActivatePlayerBillboard(string newText)
     {
-
+        billboard.text = newText;
+        billboard.enabled = true;
     }
 
     public void DeactivatePlayerBillboard()
     {
-
+        billboard.enabled = false;
     }
 
     void Movement()

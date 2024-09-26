@@ -18,12 +18,12 @@ public class NPCBehaviour : MonoBehaviour
     public IEnumerator AddTransition()
     {
         yield return new WaitForSeconds(1);
+        playerBehaviour.CheckCamera();
         if (animation.isPlaying)
         {
-            playerBehaviour.CheckCamera();
             animation.Stop();
-            animation.Play("FadeOut");
         }
+        animation.Play("FadeOut");
         playerBehaviour.SetPlayerMovable(true);
     }
 

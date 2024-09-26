@@ -137,16 +137,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e8575992920fe41a5f6e2c28373283, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterController: {fileID: 3254402831222653733}
+  characterController: {fileID: 0}
   cam: {fileID: 0}
   mainCam: {fileID: 0}
   otherCam: {fileID: 0}
-  speed: 10
+  speed: 6
   turnSmoothTime: 0.1
-  stepRayUpper: {fileID: 4317499679861063372}
-  stepRayLower: {fileID: 2275185531348376692}
+  stepRayUpper: {fileID: 0}
+  stepRayLower: {fileID: 0}
   stepHeight: 0.3
   stepSmooth: 0.1
+  BigOwlAudioSource: {fileID: 0}
 --- !u!143 &3254402831222653733
 CharacterController:
   m_ObjectHideFlags: 0
@@ -297,22 +298,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 0254f0f9-8111-43aa-9461-ea7ef5c747e7
     m_ActionName: 'Player/Hoot[/Keyboard/space]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8393583034300837868}
-        m_TargetAssemblyTypeName: PlayerBehaviour, Assembly-CSharp
-        m_MethodName: OnSing
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 8a194fac-a222-4cf8-b21a-af0e130ebab2
-    m_ActionName: 'Player/Sing[/Keyboard/f]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: c95b2375-e6d9-4b88-9c4c-c5e76515df4b

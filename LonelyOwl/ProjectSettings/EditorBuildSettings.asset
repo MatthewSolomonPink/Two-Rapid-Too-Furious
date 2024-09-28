@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Cover.unity
+    guid: 91be4bae34b524042a625e8d68ee2a71
+  - enabled: 1
+    path: Assets/Scenes/Void Opening.unity
+    guid: c429199b71e5ba542b44fa9bb040c490
+  - enabled: 1
     path: Assets/Scenes/Journal1.unity
     guid: c28f9cf9c2f3a0c4eb1b4d9661ef62f8
   - enabled: 1
@@ -14,6 +20,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Journal2.unity
     guid: 9a08d7ba9fdb19a44b0c2e1cc2a9222f
+  - enabled: 1
+    path: Assets/Scenes/StageTwo[WIP].unity
+    guid: 5cc797dc0a9db174cbd6c1a4d68a95b2
+  - enabled: 1
+    path: Assets/Scenes/Void Revisit.unity
+    guid: f19627fd860cb95418e1639a3603ff6f
   - enabled: 1
     path: Assets/Scenes/Journal3.unity
     guid: e23eb978578c1ce43bede0ceccf07e14

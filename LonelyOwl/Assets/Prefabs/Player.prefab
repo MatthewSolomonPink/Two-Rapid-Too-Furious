@@ -62,7 +62,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3278776889281169566}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.540426, y: 0.7325129, z: -2.1618872}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -70,7 +70,7 @@ Transform:
   - {fileID: 303491805464939705}
   - {fileID: 7335985512994013432}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1528330841187490637
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -78,7 +78,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3278776889281169566}
-  m_Mesh: {fileID: 2504345457074934838, guid: b39b09de6020d704dae15aced527e866, type: 3}
+  m_Mesh: {fileID: -1709844492992363025, guid: 1269a57bc93696b408726b1af920add6, type: 3}
 --- !u!23 &904544039187339424
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -102,8 +102,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 6719245597448002910, guid: 2cc0f5d1478526341a22f7cd8d27cfd2, type: 3}
-  - {fileID: 7952672690730763922, guid: 2cc0f5d1478526341a22f7cd8d27cfd2, type: 3}
+  - {fileID: 6719245597448002910, guid: 1269a57bc93696b408726b1af920add6, type: 3}
+  - {fileID: 7952672690730763922, guid: 1269a57bc93696b408726b1af920add6, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -141,12 +141,13 @@ MonoBehaviour:
   cam: {fileID: 0}
   mainCam: {fileID: 0}
   otherCam: {fileID: 0}
-  speed: 10
+  speed: 6
   turnSmoothTime: 0.1
   stepRayUpper: {fileID: 4317499679861063372}
   stepRayLower: {fileID: 2275185531348376692}
   stepHeight: 0.3
   stepSmooth: 0.1
+  BigOwlAudioSource: {fileID: 0}
 --- !u!143 &3254402831222653733
 CharacterController:
   m_ObjectHideFlags: 0
@@ -232,7 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_Actions: {fileID: 0}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -298,22 +299,6 @@ MonoBehaviour:
     m_ActionId: 0254f0f9-8111-43aa-9461-ea7ef5c747e7
     m_ActionName: 'Player/Hoot[/Keyboard/space]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8393583034300837868}
-        m_TargetAssemblyTypeName: PlayerBehaviour, Assembly-CSharp
-        m_MethodName: OnSing
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 8a194fac-a222-4cf8-b21a-af0e130ebab2
-    m_ActionName: 'Player/Sing[/Keyboard/f]'
-  - m_PersistentCalls:
       m_Calls: []
     m_ActionId: c95b2375-e6d9-4b88-9c4c-c5e76515df4b
     m_ActionName: 'UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
@@ -355,7 +340,7 @@ MonoBehaviour:
     m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
+  m_DefaultActionMap: 
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1 &4317499679861063372

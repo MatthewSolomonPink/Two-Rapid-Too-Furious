@@ -28,6 +28,7 @@ public class PlayerBehaviour : MonoBehaviour
     float horizontal;
 
     bool canPlayerMove = true;
+    bool void2Breathing = false;
 
     NPCBehaviour nPCBehaviour;
     new Rigidbody rigidbody;
@@ -135,6 +136,11 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void OnHoot(InputAction.CallbackContext context)
     {
+        if (void2Breathing)
+        {
+            return;
+        }
+
         if (!context.performed)
         {
             return;
@@ -227,11 +233,26 @@ public class PlayerBehaviour : MonoBehaviour
         this.canPlayerMove = canPlayerMove;
     }
 
+    public void SetVoid2Breathing(bool breathing)
+    {
+        this.void2Breathing = breathing;
+    }
+
+    public void ActivatePlayerBillboard(string text)
+    {
+
+    }
+
+    public void DeactivatePlayerBillboard()
+    {
+
+    }
+
     void Movement()
     {
         vertical = Input.GetAxisRaw("Vertical");
         horizontal = Input.GetAxisRaw("Horizontal");
-        Vector3 direction = new Vector3(horizontal, 0f, vertical);
+        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
         if (direction.magnitude >= 0.1f)
         {

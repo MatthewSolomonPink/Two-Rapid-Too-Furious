@@ -12,6 +12,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     bool moveToNextScene = false;
     bool resumeControl = false;
+    bool canBreath = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,19 +29,24 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         if (timesBreathed < maxBreathing)
         {
-            if (breath.IsPressed())
+            if (breath.IsPressed() && canBreath)
             {
-                //breathing behavior
-                timesBreathed++;
+                
+                StartCoroutine("breathe");
+            }
+            if (timesBreathed == maxBreathing)
+            {
+                resumeControl = true;
             }
         }
-        else if (!resumeControl)
+        
+        if (resumeControl)
         {
             player.SetPlayerMovable(true);
             player.SetVoid2Breathing(false);
             player.DeactivatePlayerBillboard();
             moveToNextScene = true;
-            resumeControl = true;
+            resumeControl = false;
         }
 
         if (moveToNextScene)
@@ -48,6 +54,16 @@ public class NewMonoBehaviourScript : MonoBehaviour
             StartCoroutine("sceneChange");
             moveToNextScene = false;
         }
+    }
+
+    IEnumerator breathe()
+    {
+        canBreath = false;
+        timesBreathed++;
+
+        //breathing behavior
+        yield return new WaitForSeconds(0.5f);
+        canBreath = true;
     }
 
     IEnumerator sceneChange()

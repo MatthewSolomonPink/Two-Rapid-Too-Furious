@@ -313,6 +313,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   optionText: {fileID: 329055670}
   journalManager: {fileID: 316236421}
+  player: {fileID: 194819184}
 --- !u!54 &133366813
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -588,6 +589,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   optionText: {fileID: 452601261}
   journalManager: {fileID: 316236421}
+  player: {fileID: 194819184}
 --- !u!224 &186553211
 RectTransform:
   m_ObjectHideFlags: 0
@@ -607,6 +609,17 @@ RectTransform:
   m_AnchoredPosition: {x: -4.1, y: 0.93}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &194819184 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8393583034300837868, guid: 2ac8b6ba2576b2d49aee104b30da841d, type: 3}
+  m_PrefabInstance: {fileID: 1408155570}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44e8575992920fe41a5f6e2c28373283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &252027033
 GameObject:
   m_ObjectHideFlags: 0
@@ -1557,6 +1570,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   optionText: {fileID: 1331287158}
   journalManager: {fileID: 316236421}
+  player: {fileID: 194819184}
 --- !u!224 &521511531
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2232,6 +2246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   optionText: {fileID: 461482230}
   journalManager: {fileID: 316236421}
+  player: {fileID: 194819184}
 --- !u!224 &967450367
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2359,6 +2374,37 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &1102908027
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1102908028}
+  m_Layer: 0
+  m_Name: LookAtPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1102908028
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102908027}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.368862, y: 21.384178, z: 35}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1331287156
 GameObject:
   m_ObjectHideFlags: 0
@@ -2561,6 +2607,14 @@ PrefabInstance:
       propertyPath: mainCam
       value: 
       objectReference: {fileID: 2080729730}
+    - target: {fileID: 8393583034300837868, guid: 2ac8b6ba2576b2d49aee104b30da841d, type: 3}
+      propertyPath: otherCam
+      value: 
+      objectReference: {fileID: 2080729730}
+    - target: {fileID: 8393583034300837868, guid: 2ac8b6ba2576b2d49aee104b30da841d, type: 3}
+      propertyPath: lookAtPoint
+      value: 
+      objectReference: {fileID: 1102908028}
     - target: {fileID: 8393583034300837868, guid: 2ac8b6ba2576b2d49aee104b30da841d, type: 3}
       propertyPath: stepRayLower
       value: 
@@ -3032,6 +3086,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   optionText: {fileID: 876207974}
   journalManager: {fileID: 316236421}
+  player: {fileID: 194819184}
 --- !u!224 &1564969769
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3328,6 +3383,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   optionText: {fileID: 1418135370}
   journalManager: {fileID: 316236421}
+  player: {fileID: 194819184}
 --- !u!224 &1877168160
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3496,3 +3552,4 @@ SceneRoots:
   - {fileID: 316236422}
   - {fileID: 528416177}
   - {fileID: 255859108}
+  - {fileID: 1102908028}

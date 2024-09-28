@@ -2,14 +2,20 @@ using NUnit.Framework;
 using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
+using UnityEngine.InputSystem.LowLevel;
 
 public class MainMenuManager : MonoBehaviour
 {
     static List<string> keyBindings = new List<string>{"W to move forward", "S to move backward", 
         "A to move left", "D to move right"};
+    
+    private Dictionary<string, string> keys = new Dictionary<string, string>();
+    
     TimouttoNextScene timouttoNextScene;
     TMP_Text text;
-    static bool isInteractedMovement = false;
+
     static bool isAllKeyInteracted = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,12 +27,20 @@ public class MainMenuManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(keyBindings.Count == 0 && gameObject.CompareTag("Interact"))
+        CheckKeyBinding(Keyboard.current.wKey, "W to move forward");
+        CheckKeyBinding(Keyboard.current.aKey, "A to move left");
+        CheckKeyBinding(Keyboard.current.sKey, "S to move backward");
+        CheckKeyBinding(Keyboard.current.dKey, "D to move right");
+
+        if (keyBindings.Count == 0 && gameObject.CompareTag("Interact"))
         {
-            isInteractedMovement = true;
             this.text.enabled = true;
+            if (Keyboard.current.eKey.wasPressedThisFrame)
+            {
+                isAllKeyInteracted = true;
+                this.gameObject.SetActive(false);
+            }
         }
-        Debug.Log(isAllKeyInteracted);
         if(isAllKeyInteracted && gameObject.CompareTag("Finish"))
         {
             this.text.enabled = true;
@@ -35,26 +49,19 @@ public class MainMenuManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && isAllKeyInteracted)
         {
-            if (keyBindings.Count != 0 && !gameObject.CompareTag("Interact"))
-            {
-                Debug.Log(this.text.text);
-                keyBindings.Remove(this.text.text);
-                this.gameObject.SetActive(false);
-            }
-            else if (isInteractedMovement && gameObject.CompareTag("Interact"))
-            {
-                //Input the button
-                isAllKeyInteracted = true;
-                this.gameObject.SetActive(false);
-            }
-            else if (isAllKeyInteracted && gameObject.CompareTag("Finish"))
-            {
-                //this.gameObject.SetActive(false);
-                Debug.Log("Move to next scene");
-                StartCoroutine(timouttoNextScene.nextStage(1f));
-            }
+            Debug.Log("Move to next scene");
+            StartCoroutine(timouttoNextScene.nextStage(1f));
+        }
+    }
+
+    void CheckKeyBinding(KeyControl key, string actionText)
+    {
+        if (key.wasPressedThisFrame && this.text.text == actionText)
+        {
+            keyBindings.Remove(this.text.text);
+            this.gameObject.SetActive(false);
         }
     }
 

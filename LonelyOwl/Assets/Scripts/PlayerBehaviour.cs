@@ -129,8 +129,6 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Update()
     {
-        //ToDo
-        //1.Need to check game status and restrict movement accordingly.
         if (canPlayerMove)
         {
             Movement();

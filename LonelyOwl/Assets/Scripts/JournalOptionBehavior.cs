@@ -32,7 +32,7 @@ public class JournalOptionBehavior : MonoBehaviour
             if (interactAction.IsPressed())
             {
                 optionText.enabled = true;
-                journalManager.optionSelected();
+                journalManager.optionSelected(floatingText.text);
                 player.DeactivatePlayerBillboard();
                 this.gameObject.SetActive(false);
             }

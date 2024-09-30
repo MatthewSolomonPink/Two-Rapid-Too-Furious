@@ -32,6 +32,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Journal4.unity
     guid: f8a2c452f01b0b24f8f9dfcb9bd78b0b
+  - enabled: 1
+    path: Assets/Scenes/EndJournal.unity
+    guid: 866401f089eaeb3438ab95c5d40a6b48
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

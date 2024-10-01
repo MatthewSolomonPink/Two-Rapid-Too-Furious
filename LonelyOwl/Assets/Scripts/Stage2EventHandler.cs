@@ -26,7 +26,7 @@ public class Stage2EventHandler : MonoBehaviour
         }
         if (playerInteracted)
         {
-            spinSpeed = spinSpeed + (Time.deltaTime * 15);
+            spinSpeed = spinSpeed + (Time.deltaTime * 30);
             UpdateSpeed();
         }
     }

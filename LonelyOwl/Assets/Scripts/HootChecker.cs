@@ -33,6 +33,7 @@ public class HootChecker : MonoBehaviour
 
     public IEnumerator nextStage(float secondsToWait)
     {
+
         if (m_AudioClip != null) AudioSource.PlayOneShot(m_AudioClip);
 
         yield return new WaitForSecondsRealtime(secondsToWait);

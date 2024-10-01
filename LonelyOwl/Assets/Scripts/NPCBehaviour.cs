@@ -15,6 +15,7 @@ public class NPCBehaviour : MonoBehaviour
         animation = GetComponentInChildren<Canvas>().GetComponent<Animation>();
     }
 
+    //Fade screen black transition
     public IEnumerator AddTransition()
     {
         yield return new WaitForSeconds(1);
@@ -27,6 +28,7 @@ public class NPCBehaviour : MonoBehaviour
         playerBehaviour.SetPlayerMovable(true);
     }
 
+    //Check player interaction
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player") && !isInteracted)

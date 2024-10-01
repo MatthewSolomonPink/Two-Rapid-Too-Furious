@@ -216,6 +216,7 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
+    //Switch camera based on interaction
     public void CheckCamera()
     {
         if (nPCBehaviour.IsInteracted())
@@ -258,6 +259,7 @@ public class PlayerBehaviour : MonoBehaviour
         billboard.enabled = false;
     }
 
+    //Player movement function
     void Movement()
     {
         vertical = Input.GetAxisRaw("Vertical");
@@ -303,6 +305,7 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
+    //Climbing code, still untested
     void StepClimb()
     {
         RaycastHit hitLower;

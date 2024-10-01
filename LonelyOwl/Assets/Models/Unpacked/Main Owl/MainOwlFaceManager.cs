@@ -9,8 +9,9 @@ public class MainOwlFaceManager : MonoBehaviour
 
     public bool isHappy = false;
 
-    private float blinkFrequency = 2.0f;
-    private float blinkDuration = 0.2f;
+    public float blinkFrequency = 2.0f;
+    public float blinkDuration = 0.2f;
+
     private float currentBlinkTime = 0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

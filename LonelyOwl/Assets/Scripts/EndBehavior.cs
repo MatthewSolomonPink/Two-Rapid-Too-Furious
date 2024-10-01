@@ -18,7 +18,9 @@ public class EndBehavior : MonoBehaviour
     [SerializeField] string journal_3_mainText;
     [SerializeField] string journal_4_mainText;
 
-    [SerializeField] Animation fadeout;
+    [SerializeField] Animation fadein;
+    [SerializeField] TextMeshProUGUI creditsTitle;
+    [SerializeField] TextMeshProUGUI creditsBody;
     [SerializeField] Button endBtn;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -65,13 +67,19 @@ public class EndBehavior : MonoBehaviour
         recapText.text += journal_4_selections;
         yield return new WaitForSeconds(1);
         recapText.text += journal_4_mainText + "\n\n";
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(7);
 
-        fadeout.Play("FadeIn");
+        fadein.Play("FadeIn");
 
         yield return new WaitForSeconds(2);
-        endBtn.enabled = true;
-        //endBtn.GetComponent<CanvasGroup>().alpha = 1.0f;
+        creditsTitle.enabled = true;
+        creditsBody.enabled = true;
+        yield return new WaitForSeconds(5);
+        creditsTitle.enabled = false;
+        creditsBody.enabled = false;
+        yield return new WaitForSeconds(0.5f);
+
+        endBtn.GetComponent<CanvasGroup>().alpha = 1.0f;
     }
 
     public void endGame()

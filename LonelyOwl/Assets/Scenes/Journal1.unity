@@ -358,7 +358,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 19.96, y: 4.52, z: 2}
+  m_Size: {x: 19.96, y: 4.52, z: 2.69}
   m_Center: {x: 0.000049591064, y: 0.04, z: -0.0000038146973}
 --- !u!143 &171918911 stripped
 CharacterController:
@@ -405,7 +405,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 19.96, y: 4.52, z: 2}
+  m_Size: {x: 19.96, y: 4.52, z: 2.69}
   m_Center: {x: 0.000049591064, y: 0.04, z: -0.0000038146973}
 --- !u!54 &186553207
 Rigidbody:
@@ -1393,7 +1393,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 19.96, y: 4.52, z: 2}
+  m_Size: {x: 19.96, y: 4.52, z: 2.69}
   m_Center: {x: 0.000049591064, y: 0.04, z: -0.0000038146973}
 --- !u!54 &521511527
 Rigidbody:
@@ -2065,7 +2065,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 19.96, y: 4.52, z: 2}
+  m_Size: {x: 19.96, y: 4.52, z: 2.69}
   m_Center: {x: 0.000049591064, y: 0.04, z: -0.0000038146973}
 --- !u!54 &967450363
 Rigidbody:
@@ -2899,7 +2899,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 19.96, y: 4.52, z: 2}
+  m_Size: {x: 19.96, y: 4.52, z: 2.69}
   m_Center: {x: 0.000049591064, y: 0.04, z: -0.0000038146973}
 --- !u!54 &1564969765
 Rigidbody:
@@ -3194,7 +3194,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 19.96, y: 4.52, z: 2}
+  m_Size: {x: 19.96, y: 4.52, z: 2.69}
   m_Center: {x: 0.000049591064, y: 0.04, z: -0.0000038146973}
 --- !u!54 &1877168156
 Rigidbody:

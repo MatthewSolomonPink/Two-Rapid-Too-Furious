@@ -1622,6 +1622,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bookCutOut: {fileID: 684216298}
   bookText: {fileID: 347847174}
+  player: {fileID: 1545700508}
+  waitForAnimation: 4
 --- !u!95 &1036445237
 Animator:
   serializedVersion: 7

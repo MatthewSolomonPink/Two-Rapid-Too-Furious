@@ -14,12 +14,15 @@ public class NewMonoBehaviourScript : MonoBehaviour
     bool resumeControl = false;
     bool canBreath = true;
 
+    [SerializeField] TransitionBehavior transition;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player.SetPlayerMovable(false);
         player.SetVoid2Breathing(true);
         player.ActivatePlayerBillboard("Breath (E)");
+        transition.inVoid2 = true;
 
         breath = InputSystem.actions.FindAction("Interact");
     }
@@ -69,8 +72,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     IEnumerator sceneChange()
     {
         yield return new WaitForSeconds(5);
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        Debug.Log("Load Next Scene");
-        SceneManager.LoadSceneAsync(currentSceneIndex + 1);
+
+            transition.goToNextScene();
     }
 }

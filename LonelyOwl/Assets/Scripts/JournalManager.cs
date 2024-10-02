@@ -11,6 +11,7 @@ public class JournalManager : MonoBehaviour
     [SerializeField] int maxSelectedWords;
     [SerializeField] GameObject[] wordOptions;
     bool goingToNext = false;
+    [SerializeField] TransitionBehavior transition;
 
     [SerializeField] int journalIndex;
     [SerializeField] JournalData journalData;
@@ -66,8 +67,6 @@ public class JournalManager : MonoBehaviour
 
         //stop singing?
 
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        Debug.Log("Load Next Scene");
-        SceneManager.LoadSceneAsync(currentSceneIndex + 1);
+        transition.goToNextScene();
     }
 }

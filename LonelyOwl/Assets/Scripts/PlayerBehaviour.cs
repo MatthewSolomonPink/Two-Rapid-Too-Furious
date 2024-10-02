@@ -211,12 +211,17 @@ public class PlayerBehaviour : MonoBehaviour
 
     IEnumerator playBigOwlSoundWithDelay(AudioClip clip, float delay, bool isLastInScale)
     {
+
+        //Before singing, do it here
+
+
         yield return new WaitForSeconds(delay);
         BigOwlAudioSource.PlayOneShot(clip);
         if (isLastInScale)
         {
             bigOwlReadyToSing = true;
         }
+        //When start singing
     }
 
     //Switch camera based on interaction

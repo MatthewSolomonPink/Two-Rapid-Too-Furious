@@ -16,11 +16,14 @@ public class MainMenuManager : MonoBehaviour
     TimouttoNextScene timouttoNextScene;
     TMP_Text text;
 
+    PlayerBehaviour playerBehaviour;
+
     static bool isAllKeyInteracted = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         timouttoNextScene = FindAnyObjectByType<TimouttoNextScene>();
+        playerBehaviour = FindAnyObjectByType<PlayerBehaviour>();
         text = GetComponent<TMP_Text>();
     }
 
@@ -47,15 +50,18 @@ public class MainMenuManager : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    //Check for loading next scene
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.CompareTag("Player") && isAllKeyInteracted)
+        if (collision.gameObject.CompareTag("Player") && isAllKeyInteracted)
         {
             Debug.Log("Move to next scene");
+            playerBehaviour.SetPlayerMovable(false);
             StartCoroutine(timouttoNextScene.nextStage(1f));
         }
     }
 
+    // Check the key press and remove the text
     void CheckKeyBinding(KeyControl key, string actionText)
     {
         if (key.wasPressedThisFrame && this.text.text == actionText)
@@ -64,5 +70,4 @@ public class MainMenuManager : MonoBehaviour
             this.gameObject.SetActive(false);
         }
     }
-
 }

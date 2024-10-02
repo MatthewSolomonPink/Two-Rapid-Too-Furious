@@ -7,14 +7,19 @@ public class NPCBehaviour : MonoBehaviour
     bool isInteracted = false;
     
     PlayerBehaviour playerBehaviour;
-    
+    MeshCollider stairMeshCollider;
+
     new Animation animation;
+
+    [SerializeField] GameObject stairs;
     void Start()
     {
         playerBehaviour = FindFirstObjectByType<PlayerBehaviour>();
         animation = GetComponentInChildren<Canvas>().GetComponent<Animation>();
+        stairMeshCollider = stairs.GetComponent<MeshCollider>();
     }
 
+    //Fade screen black transition
     public IEnumerator AddTransition()
     {
         yield return new WaitForSeconds(1);
@@ -27,12 +32,14 @@ public class NPCBehaviour : MonoBehaviour
         playerBehaviour.SetPlayerMovable(true);
     }
 
-    private void OnTriggerStay(Collider other)
+    //Check player interaction
+    private void OnCollisionStay(Collision collision)
     {
-        if (other.CompareTag("Player") && !isInteracted)
+        if (collision.gameObject.CompareTag("Player") && !isInteracted)
         {
             isInteracted = true;
             playerBehaviour.SetPlayerMovable(false);
+            stairMeshCollider.enabled = true;
             if (animation.isPlaying)
             {
                 animation.Stop();

@@ -14,6 +14,7 @@ public class HootChecker : MonoBehaviour
 
     private AudioSource AudioSource;
     private bool fired = false;
+    private bool owlReady = false;
 
     InputAction hoot;
 
@@ -22,13 +23,29 @@ public class HootChecker : MonoBehaviour
         AudioSource = GetComponent<AudioSource>() == null ? gameObject.AddComponent<AudioSource>() : GetComponent<AudioSource>();
         hoot = InputSystem.actions.FindAction("Hoot");
     }
-    
 
-    private void OnTriggerStay(Collider other)
+
+    private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log("Collide");
-        //if ((Input.GetKeyDown(KeyCode.Space)) && (other.gameObject.tag == "Player") && !fired)
-        if ((hoot.IsPressed()) && (other.gameObject.tag == "Player") && !fired)
+        Debug.Log("Collide");
+        if (other.gameObject.tag == "Player")
+        {
+            owlReady = true;
+
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            owlReady = false;
+        }
+    }
+
+    private void Update()
+    {
+        if (owlReady && !fired && (Input.GetKeyUp(KeyCode.Space)))
         {
             Debug.Log("Active");
             fired = true;

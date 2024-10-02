@@ -51,9 +51,9 @@ public class MainMenuManager : MonoBehaviour
     }
 
     //Check for loading next scene
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.CompareTag("Player") && isAllKeyInteracted)
+        if (collision.gameObject.CompareTag("Player") && isAllKeyInteracted)
         {
             Debug.Log("Move to next scene");
             playerBehaviour.SetPlayerMovable(false);
@@ -70,5 +70,4 @@ public class MainMenuManager : MonoBehaviour
             this.gameObject.SetActive(false);
         }
     }
-
 }

@@ -118,6 +118,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &126402420
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 126402421}
+  m_Layer: 0
+  m_Name: CubeDeath
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &126402421
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 126402420}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -25.665, y: 6.14, z: 0.141}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &133366806
 GameObject:
   m_ObjectHideFlags: 0
@@ -1253,6 +1284,7 @@ MonoBehaviour:
   - {fileID: 1877168154}
   - {fileID: 1564969763}
   - {fileID: 521511525}
+  transition: {fileID: 0}
   journalIndex: 0
   journalData: {fileID: 11400000, guid: 98a4bc2ca556ead4ea5e1f1f70d4f418, type: 2}
 --- !u!4 &316236422
@@ -4073,9 +4105,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cubeSpeed: 1
-  cubeSpeedOverTime: 1.02
-  vanishSpeed: 0.007
+  cubeSpeedOverTime: 1.017
+  vanishSpeed: 0.006
   AnimateCubes: 0
+  CubeDeath: {fileID: 126402421}
 --- !u!1 &1736500933
 GameObject:
   m_ObjectHideFlags: 0
@@ -4631,3 +4664,4 @@ SceneRoots:
   - {fileID: 1102908028}
   - {fileID: 186572136}
   - {fileID: 1681484979}
+  - {fileID: 126402421}

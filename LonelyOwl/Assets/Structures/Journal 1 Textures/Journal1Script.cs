@@ -6,9 +6,10 @@ using System;
 public class Journal : MonoBehaviour
 {
     public float cubeSpeed = 1.0f;
-    public float cubeSpeedOverTime = 1.02f;
-    public float vanishSpeed = 0.007f;
+    public float cubeSpeedOverTime = 1.017f;
+    public float vanishSpeed = 0.006f;
     public bool AnimateCubes = false;
+    public Transform CubeDeath;
 
     //private GameObject[] cubes;
     private List<SketchCube> cubes = new List<SketchCube>();
@@ -54,14 +55,24 @@ public class Journal : MonoBehaviour
     {
         if (AnimateCubes)
         {
+            var cubesToRemove = new List<SketchCube>();
             foreach(var c in cubes)
             {
                 if (timeAccum > c.Delay)
                 {
                     var horizontalMovement = Time.deltaTime * cubeSpeed * -1;
-                    c.G.transform.position = c.G.transform.position + new Vector3(horizontalMovement, 0, 0);
+                    var verticalMovement = ((Time.deltaTime * cubeSpeed) / UnityEngine.Random.Range(1.5f, 3.5f)) * -1;
+                    c.G.transform.position = c.G.transform.position + new Vector3(horizontalMovement, 0, verticalMovement);
                     c.Material.color = c.Material.color - new Color(0, 0, 0, vanishSpeed);
+                    if(c.G.transform.position.x < CubeDeath.position.x)
+                    {
+                        cubesToRemove.Add(c);
+                    }
                 }
+            }
+            foreach (var c in cubesToRemove)
+            {
+                cubes.Remove(c);
             }
             timeAccum += Time.deltaTime;
             cubeSpeed *= cubeSpeedOverTime;

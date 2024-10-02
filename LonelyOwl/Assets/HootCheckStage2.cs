@@ -14,6 +14,8 @@ public class HootCheckStage2 : MonoBehaviour
     private AudioSource AudioSource;
     private bool fired = false;
 
+    private bool owlReady = false;
+
     private void Start()
     {
         AudioSource = GetComponent<AudioSource>() == null ? gameObject.AddComponent<AudioSource>() : GetComponent<AudioSource>();
@@ -21,10 +23,27 @@ public class HootCheckStage2 : MonoBehaviour
     }
 
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Collide");
-        if ((Input.GetKeyUp(KeyCode.Space)) && (other.gameObject.tag == "Player") && !fired)
+        if (other.gameObject.tag == "Player")
+        {
+            owlReady = true;
+            
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player");
+        {
+            owlReady = false;
+        }
+    }
+
+    private void Update()
+    {
+        if (owlReady && !fired && (Input.GetKeyUp(KeyCode.Space)))
         {
             Debug.Log("Active");
             fired = true;

@@ -6,6 +6,7 @@ public class TimouttoNextScene : MonoBehaviour
 {
     [SerializeField] private float waitTime = 1f;
     [SerializeField] private bool startAutomatic = true;
+    [SerializeField] TransitionBehavior transition;
     void Start()
     {
         if (startAutomatic) { StartCoroutine(nextStage(waitTime)); }
@@ -15,9 +16,7 @@ public class TimouttoNextScene : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(secondsToWait);
 
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        Debug.Log("Load Next Scene");
-        SceneManager.LoadSceneAsync(currentSceneIndex + 1);
+        transition.goToNextScene();
     }
 
 }

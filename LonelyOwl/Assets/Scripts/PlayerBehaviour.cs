@@ -29,7 +29,7 @@ public class PlayerBehaviour : MonoBehaviour
     float vertical;
     float horizontal;
 
-    [SerializeField] TextMeshProUGUI billboard;
+    RaycastHit slopeHit;
 
     bool canPlayerMove = true;
     bool void2Breathing = false;
@@ -37,10 +37,12 @@ public class PlayerBehaviour : MonoBehaviour
     NPCBehaviour nPCBehaviour;
     new Rigidbody rigidbody;
 
+
+    [SerializeField] TextMeshProUGUI billboard;
     [SerializeField] GameObject stepRayUpper;
     [SerializeField] GameObject stepRayLower;
-    [SerializeField] float stepHeight = 0.3f;
-    [SerializeField] float stepSmooth = 0.1f;
+    [SerializeField] float stepHeight = 2.5f;
+    [SerializeField] float stepSmooth = 0.2f;
 
     private class HootNote : IComparable
     {
@@ -99,6 +101,7 @@ public class PlayerBehaviour : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         stepRayUpper.transform.position = new Vector3(stepRayUpper.transform.position.x,
             stepHeight, stepRayUpper.transform.position.z);
+
 
         var hootFiles = Directory.GetFiles("Assets\\Sounds\\Generic_Hoots", "*.wav", SearchOption.TopDirectoryOnly);
 
@@ -208,14 +211,20 @@ public class PlayerBehaviour : MonoBehaviour
 
     IEnumerator playBigOwlSoundWithDelay(AudioClip clip, float delay, bool isLastInScale)
     {
+
+        //Before singing, do it here
+
+
         yield return new WaitForSeconds(delay);
         BigOwlAudioSource.PlayOneShot(clip);
         if (isLastInScale)
         {
             bigOwlReadyToSing = true;
         }
+        //When start singing
     }
 
+    //Switch camera based on interaction
     public void CheckCamera()
     {
         if (nPCBehaviour.IsInteracted())
@@ -258,38 +267,17 @@ public class PlayerBehaviour : MonoBehaviour
         billboard.enabled = false;
     }
 
-    void Movement()
+    private void OnCollisionStay(Collision collision)
     {
-        vertical = Input.GetAxisRaw("Vertical");
-        horizontal = Input.GetAxisRaw("Horizontal");
-        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
-
-        if (direction.magnitude >= 0.1f)
+        if (collision.gameObject.CompareTag("NextScene") && nPCBehaviour.IsInteracted())
         {
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) *
-                Mathf.Rad2Deg + cam.eulerAngles.y;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle,
-                ref turnSmoothVelocity, turnSmoothTime);
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
-
-            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-
-            characterController.Move(moveDir.normalized * speed * Time.deltaTime);
-        }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("NextScene") && nPCBehaviour.IsInteracted())
-        {
-            Debug.Log("Get into the stairs");
             //Go down staris
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnCollisionExit(Collision collision)
     {
-        if (other.CompareTag("NextScene") && nPCBehaviour.IsInteracted())
+        if (collision.gameObject.CompareTag("NextScene") && nPCBehaviour.IsInteracted())
         {
             int currentScene = SceneManager.GetActiveScene().buildIndex;
             if (currentScene > 2)
@@ -305,46 +293,109 @@ public class PlayerBehaviour : MonoBehaviour
 
     void StepClimb()
     {
+        // Step Up Logic
         RaycastHit hitLower;
         if (Physics.Raycast(stepRayLower.transform.position,
-            transform.TransformDirection(Vector3.forward),
-            out hitLower, 0.1f))
+                            transform.TransformDirection(Vector3.forward),
+                            out hitLower, 0.1f))
         {
             RaycastHit hitUpper;
             if (!Physics.Raycast(stepRayUpper.transform.position,
-                transform.TransformDirection(Vector3.forward),
-                out hitUpper, 0.2f))
+                                 transform.TransformDirection(Vector3.forward),
+                                 out hitUpper, 0.2f))
             {
-                rigidbody.position -= new Vector3(0f, -stepSmooth, 0f);
+                // Step up only if not on a slope (optional condition)
+                if (!IsOnSlope())
+                {
+                    rigidbody.position += new Vector3(0f, stepSmooth, 0f);
+                }
             }
         }
 
-        RaycastHit hitLower45;
-        if (Physics.Raycast(stepRayLower.transform.position,
-            transform.TransformDirection(1.5f, 0, 1),
-            out hitLower45, 0.1f))
+        // Downward step handling for stairs
+        RaycastHit hitLowerDown;
+        if (Physics.Raycast(transform.position + new Vector3(0, -stepHeight, 0),
+                            Vector3.down, out hitLowerDown, 0.5f))
         {
-            RaycastHit hitUpper45;
-            if (!Physics.Raycast(stepRayUpper.transform.position,
-                transform.TransformDirection(1.5f, 0, 1),
-                out hitUpper45, 0.2f))
+            // Step down only if not already grounded or on a slope
+            if (hitLowerDown.distance > stepHeight && !IsOnSlope())
             {
-                rigidbody.position -= new Vector3(0f, -stepSmooth, 0f);
+                rigidbody.position -= new Vector3(0f, stepSmooth, 0f);
             }
         }
 
-        RaycastHit hitLowerMinus45;
+        // Handle stepping at angles
+        StepAtAngle(2.5f, 0, 2);  // Right 45-degree check
+        StepAtAngle(-2.5f, 0, 2); // Left 45-degree check
+    }
+
+    void StepAtAngle(float x, float y, float z)
+    {
+        RaycastHit hitLowerAngle;
         if (Physics.Raycast(stepRayLower.transform.position,
-            transform.TransformDirection(-1.5f, 0, 1),
-            out hitLowerMinus45, 0.1f))
+                            transform.TransformDirection(x, y, z),
+                            out hitLowerAngle, 0.5f))
         {
-            RaycastHit hitUpperMinus45;
+            RaycastHit hitUpperAngle;
             if (!Physics.Raycast(stepRayUpper.transform.position,
-                transform.TransformDirection(-1.5f, 0, 1),
-                out hitUpperMinus45, 0.2f))
+                                 transform.TransformDirection(x, y, z),
+                                 out hitUpperAngle, 0.5f))
             {
-                rigidbody.position -= new Vector3(0f, -stepSmooth, 0f);
+                // Only step up if not on a slope
+                if (!IsOnSlope())
+                {
+                    rigidbody.position += new Vector3(0f, stepSmooth, 0f);
+                }
+            }
+        }
+
+        RaycastHit hitLowerDownAngle;
+        if (Physics.Raycast(transform.position + new Vector3(0, -stepHeight, 0),
+                            Vector3.down, out hitLowerDownAngle, 0.5f))
+        {
+            // Step down logic at angles
+            if (hitLowerDownAngle.distance > stepHeight && !IsOnSlope())
+            {
+                rigidbody.position -= new Vector3(0f, stepSmooth, 0f);
             }
         }
     }
+
+    bool IsOnSlope()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, 1.5f))
+        {
+            float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
+            return angle > 5f && angle < characterController.slopeLimit;
+        }
+        return false;
+    }
+
+    void Movement()
+    {
+        vertical = Input.GetAxisRaw("Vertical");
+        horizontal = Input.GetAxisRaw("Horizontal");
+        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+
+        if (direction.magnitude >= 0.1f)
+        {
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+
+            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+
+            // Apply movement, accounting for slopes and gravity
+            if (IsOnSlope())
+            {
+                Vector3 slopeMovement = Vector3.ProjectOnPlane(moveDir, slopeHit.normal);
+                characterController.Move(slopeMovement.normalized * speed * Time.deltaTime);
+            }
+            else
+            {
+                characterController.Move(moveDir.normalized * speed * Time.deltaTime);
+            }
+        }
+    }
+
 }

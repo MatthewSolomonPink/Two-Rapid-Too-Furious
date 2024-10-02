@@ -10,6 +10,7 @@ public class HootChecker : MonoBehaviour
     //[SerializeField] private GameObject player;
     [SerializeField] private AudioClip m_AudioClip;
     [SerializeField] private float waitTime = 2;
+    [SerializeField] private TransitionBehavior transition;
 
     private AudioSource AudioSource;
     private bool fired = false;
@@ -41,9 +42,10 @@ public class HootChecker : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(secondsToWait);
 
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        /*int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         Debug.Log("Load Next Scene");
-        SceneManager.LoadSceneAsync(currentSceneIndex + 1);
+        SceneManager.LoadSceneAsync(currentSceneIndex + 1);*/
+        transition.goToNextScene();
     }
 
 }

@@ -13,12 +13,20 @@ public class TransitionBehavior : MonoBehaviour
     [SerializeField] bool startingScene = true;
     float t = 0f;
     bool endingCurrentScene = false;
+    public bool inVoid2 = false; 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        player.SetPlayerMovable(false);
-        pageMat.color = new Color(1f, 1f, 1f, 1f);
+        if (startingScene)
+        {
+            player.SetPlayerMovable(false);
+            pageMat.color = new Color(1f, 1f, 1f, 1f);
+        }
+        else
+        {
+            pageMat.color = new Color(1f, 1f, 1f, 0f);
+        }
         pageFlip.gameObject.SetActive(false);
     }
 
@@ -32,7 +40,10 @@ public class TransitionBehavior : MonoBehaviour
             if (pageMat.color.a <= 0f)
             {
                 startingScene = false;
-                player.SetPlayerMovable(true);
+                if (!inVoid2)
+                {
+                    player.SetPlayerMovable(true);
+                }
             }
         }
         else if (endingCurrentScene)

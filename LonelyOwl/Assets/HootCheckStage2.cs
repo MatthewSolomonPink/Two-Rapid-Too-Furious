@@ -3,12 +3,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
-public class HootChecker : MonoBehaviour
+public class HootCheckStage2 : MonoBehaviour
 {
 
     //[SerializeField] private GameObject player;
     [SerializeField] private AudioClip m_AudioClip;
     [SerializeField] private float waitTime = 2;
+    [SerializeField] private GameObject manager;
 
     private AudioSource AudioSource;
     private bool fired = false;
@@ -18,7 +19,7 @@ public class HootChecker : MonoBehaviour
         AudioSource = GetComponent<AudioSource>() == null ? gameObject.AddComponent<AudioSource>() : GetComponent<AudioSource>();
 
     }
-    
+
 
     private void OnTriggerStay(Collider other)
     {
@@ -33,8 +34,9 @@ public class HootChecker : MonoBehaviour
 
     public IEnumerator nextStage(float secondsToWait)
     {
-
         if (m_AudioClip != null) AudioSource.PlayOneShot(m_AudioClip);
+        Stage2EventHandler levelEvent = manager.GetComponent<Stage2EventHandler>();
+        levelEvent.playerInteracted = true;
 
         yield return new WaitForSecondsRealtime(secondsToWait);
 

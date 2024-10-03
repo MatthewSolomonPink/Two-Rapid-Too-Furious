@@ -114,7 +114,8 @@ public class PlayerBehaviour : MonoBehaviour
             // Turns out AudioClip has a name property lol
             //var name = f.Split("\\")[3].Replace(".wav", "");
             //var clip = AssetDatabase.LoadAssetAtPath<AudioClip>(f);
-            var clip = Resources.Load<AudioClip>(f);
+            var clip = Resources.Load<AudioClip>("Ab1");
+            Debug.Log(clip);
             var hoot = new HootNote(clip.name, clip);
 
             if (hoot.Octave >= 3)

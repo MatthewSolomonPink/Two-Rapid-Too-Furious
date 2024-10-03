@@ -1,15 +1,16 @@
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UIElements; 
 using UnityEngine.SceneManagement;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
+//using static UnityEditor.Searcher.SearcherWindow.Alignment; //Problem
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 using System.Collections.Generic;
 using System;
 using UnityEditor;
+
 using System.IO;
 using System.Linq;
-using UnityEditor.SceneManagement;
+//using UnityEditor.SceneManagement; //Problem
 using System.Collections;
 using UnityEngine.Audio;
 using TMPro;
@@ -112,7 +113,8 @@ public class PlayerBehaviour : MonoBehaviour
         {
             // Turns out AudioClip has a name property lol
             //var name = f.Split("\\")[3].Replace(".wav", "");
-            var clip = AssetDatabase.LoadAssetAtPath<AudioClip>(f);
+            //var clip = AssetDatabase.LoadAssetAtPath<AudioClip>(f);
+            var clip = Resources.Load<AudioClip>(f);
             var hoot = new HootNote(clip.name, clip);
 
             if (hoot.Octave >= 3)

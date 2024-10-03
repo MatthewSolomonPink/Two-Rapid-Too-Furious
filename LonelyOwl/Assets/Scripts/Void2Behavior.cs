@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class Void2Behavior : MonoBehaviour
 {
     [SerializeField] PlayerBehaviour player;
     [SerializeField] int maxBreathing;
@@ -12,6 +12,9 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     bool moveToNextScene = false;
     bool resumeControl = false;
+    bool canBreath = true;
+
+    [SerializeField] TransitionBehavior transition;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,8 +22,9 @@ public class NewMonoBehaviourScript : MonoBehaviour
         player.SetPlayerMovable(false);
         player.SetVoid2Breathing(true);
         player.ActivatePlayerBillboard("Breath (E)");
+        transition.inVoid2 = true;
 
-        breath = InputSystem.actions.FindAction("Interact");
+        //breath = InputSystem.actions.FindAction("Interact");
     }
 
     // Update is called once per frame
@@ -28,19 +32,24 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         if (timesBreathed < maxBreathing)
         {
-            if (breath.IsPressed())
+            if (Input.GetKeyDown(KeyCode.E) && canBreath)//breath.IsPressed() && canBreath)
             {
-                //breathing behavior
-                timesBreathed++;
+                
+                StartCoroutine("breathe");
+            }
+            if (timesBreathed == maxBreathing)
+            {
+                resumeControl = true;
             }
         }
-        else if (!resumeControl)
+        
+        if (resumeControl)
         {
             player.SetPlayerMovable(true);
             player.SetVoid2Breathing(false);
             player.DeactivatePlayerBillboard();
             moveToNextScene = true;
-            resumeControl = true;
+            resumeControl = false;
         }
 
         if (moveToNextScene)
@@ -50,11 +59,20 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
     }
 
+    IEnumerator breathe()
+    {
+        canBreath = false;
+        timesBreathed++;
+
+        //breathing behavior
+        yield return new WaitForSeconds(0.5f);
+        canBreath = true;
+    }
+
     IEnumerator sceneChange()
     {
         yield return new WaitForSeconds(5);
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        Debug.Log("Load Next Scene");
-        SceneManager.LoadSceneAsync(currentSceneIndex + 1);
+
+            transition.goToNextScene();
     }
 }

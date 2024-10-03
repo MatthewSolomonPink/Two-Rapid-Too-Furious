@@ -12,11 +12,13 @@ public class JournalOptionBehavior : MonoBehaviour
     [SerializeField] TextMeshProUGUI optionText;
     [SerializeField] JournalManager journalManager;
 
+    [SerializeField] PlayerBehaviour player;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         interactable = false;
-        interactAction = InputSystem.actions.FindAction("Interact");
+        //interactAction = InputSystem.actions.FindAction("Interact");
 
         floatingText  = GetComponent<TextMeshPro>();
         c = floatingText.color; 
@@ -27,10 +29,11 @@ public class JournalOptionBehavior : MonoBehaviour
     {
         if (interactable) 
         {
-            if (interactAction.IsPressed())
+            if (Input.GetKeyDown(KeyCode.E))//interactAction.IsPressed())
             {
                 optionText.enabled = true;
-                journalManager.optionSelected();
+                journalManager.optionSelected(floatingText.text);
+                player.DeactivatePlayerBillboard();
                 this.gameObject.SetActive(false);
             }
         }
@@ -43,6 +46,7 @@ public class JournalOptionBehavior : MonoBehaviour
             interactable = true;
             floatingText.fontStyle = FontStyles.Bold;
             floatingText.color = c * 4;
+            player.ActivatePlayerBillboard("Choose (E)");
         }
     }
 
@@ -53,6 +57,7 @@ public class JournalOptionBehavior : MonoBehaviour
             interactable = false;
             floatingText.fontStyle = FontStyles.Normal;
             floatingText.color = c;
+            player.DeactivatePlayerBillboard();
         }
     }
 }

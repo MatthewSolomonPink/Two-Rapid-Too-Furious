@@ -482,7 +482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81085f60ca45cff4f826a2ec7d50aebd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTime: 5
+  waitTime: 10
   startAutomatic: 1
   transition: {fileID: 272554733}
 --- !u!4 &996551174

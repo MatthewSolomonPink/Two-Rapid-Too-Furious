@@ -1,5 +1,5 @@
 using System.Collections;
-using UnityEditor.ShaderGraph.Internal;
+//using UnityEditor.ShaderGraph.Internal; //Problem
 using UnityEngine;
 
 public class NPCBehaviour : MonoBehaviour

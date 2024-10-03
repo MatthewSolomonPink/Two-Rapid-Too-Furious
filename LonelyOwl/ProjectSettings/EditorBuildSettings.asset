@@ -30,6 +30,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Journal3.unity
     guid: e23eb978578c1ce43bede0ceccf07e14
   - enabled: 1
+    path: Assets/Scenes/StageThree[Song].unity
+    guid: 5efd4f4ccd4f77849b8a285dbcabff7d
+  - enabled: 1
     path: Assets/Scenes/Journal4.unity
     guid: f8a2c452f01b0b24f8f9dfcb9bd78b0b
   - enabled: 1

@@ -22,6 +22,7 @@ public class PlayerBehaviour : MonoBehaviour
     public GameObject mainCam;
     public GameObject otherCam;
     public Transform lookAtPoint;
+    
 
     public float speed = 6f;
     public float turnSmoothTime = 0.1f;
@@ -43,6 +44,8 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] GameObject stepRayLower;
     [SerializeField] float stepHeight = 2.5f;
     [SerializeField] float stepSmooth = 0.2f;
+
+    [SerializeField] Stage3EventHandler stage3EventHandler;
 
     private class HootNote : IComparable
     {
@@ -138,6 +141,11 @@ public class PlayerBehaviour : MonoBehaviour
             StepClimb();
         }
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            OnHoot();  
+        }
+
         //Adjust billboard to face camera
         if (billboard.enabled)
         {
@@ -146,20 +154,21 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
-    public void OnHoot(InputAction.CallbackContext context)
+    //public void OnHoot(InputAction.CallbackContext context)
+    public void OnHoot()
     {
         if (void2Breathing)
         {
             return;
         }
 
-        if (!context.performed)
+       /* if (!context.performed)
         {
             return;
         }
 
         if (context.interaction is PressInteraction)
-        {
+        {*/
             AudioClip c = null;
             if (playerIsPlayingThroughScale)
             {
@@ -170,6 +179,10 @@ public class PlayerBehaviour : MonoBehaviour
                 if (!playerIsPlayingThroughScale)
                 {
                     // Start big owl singing
+                    // Call out to stageManager
+                    if (stage3EventHandler != null)
+                        stage3EventHandler.owlEmerge = true;
+
                     float initialDelay = 1.0f;
                     float currentDelay = 0.0f;
                     StartCoroutine(playBigOwlSoundWithDelay(bigOwlHootNotes[0].Clip, initialDelay, false));
@@ -206,14 +219,14 @@ public class PlayerBehaviour : MonoBehaviour
             }
 
 
-        }
+        //}
     }
 
     IEnumerator playBigOwlSoundWithDelay(AudioClip clip, float delay, bool isLastInScale)
     {
 
         //Before singing, do it here
-
+        
 
         yield return new WaitForSeconds(delay);
         BigOwlAudioSource.PlayOneShot(clip);

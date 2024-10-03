@@ -96,7 +96,7 @@ public class HootChecker : MonoBehaviour
         /*int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         Debug.Log("Load Next Scene");
         SceneManager.LoadSceneAsync(currentSceneIndex + 1);*/
-        //transition.goToNextScene();
+        transition.goToNextScene();
     }
 
     public IEnumerator AddTransition()

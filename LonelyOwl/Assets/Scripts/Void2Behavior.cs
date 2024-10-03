@@ -24,7 +24,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         player.ActivatePlayerBillboard("Breath (E)");
         transition.inVoid2 = true;
 
-        breath = InputSystem.actions.FindAction("Interact");
+        //breath = InputSystem.actions.FindAction("Interact");
     }
 
     // Update is called once per frame
@@ -32,7 +32,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         if (timesBreathed < maxBreathing)
         {
-            if (breath.IsPressed() && canBreath)
+            if (Input.GetKeyDown(KeyCode.E) && canBreath)//breath.IsPressed() && canBreath)
             {
                 
                 StartCoroutine("breathe");

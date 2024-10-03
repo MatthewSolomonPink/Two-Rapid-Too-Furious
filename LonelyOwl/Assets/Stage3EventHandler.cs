@@ -7,7 +7,7 @@ public class Stage3EventHandler : MonoBehaviour
     [SerializeField] private GameObject bigOwl;
     [SerializeField] private float targetHeight = 4f;
     [SerializeField] private float speed = 10f;
-
+    [SerializeField] TransitionBehavior transition;
     private float owlHeight = 0f;
 
     private bool fired = false;
@@ -45,6 +45,7 @@ public class Stage3EventHandler : MonoBehaviour
         inkSplats.SetActive(true);
         yield return new WaitForSecondsRealtime(1.5f);
         owlRise = true;
-        
+        yield return new WaitForSecondsRealtime(1f);
+        transition.goToNextScene();
     }
 }

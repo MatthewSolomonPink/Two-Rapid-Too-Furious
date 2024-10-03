@@ -355,16 +355,28 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 1269a57bc93696b408726b1af920add6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.4243
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1269a57bc93696b408726b1af920add6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.4243
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1269a57bc93696b408726b1af920add6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.4243
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1269a57bc93696b408726b1af920add6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -19.48
+      value: -19.475698
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1269a57bc93696b408726b1af920add6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.38
+      value: -2.5621288
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1269a57bc93696b408726b1af920add6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.22
+      value: 0.21934867
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1269a57bc93696b408726b1af920add6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -394,6 +406,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 1269a57bc93696b408726b1af920add6, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 6719245597448002910, guid: 2a45a00cfd78a5140a55bcced28d669b, type: 3}
     - target: {fileID: 919132149155446097, guid: 1269a57bc93696b408726b1af920add6, type: 3}
       propertyPath: m_Name
       value: Owl maya test
@@ -1501,6 +1517,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 464472808}
     - target: {fileID: 8450535088835243381, guid: 0fc7053d88434284cbb209c0a8c3c94c, type: 3}
+      propertyPath: targetHeight
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450535088835243381, guid: 0fc7053d88434284cbb209c0a8c3c94c, type: 3}
       propertyPath: TimouttoNextScene
       value: 
       objectReference: {fileID: 996551175}
@@ -1773,8 +1793,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2080729730}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: -11, y: 24, z: -2.13}
+  m_LocalRotation: {x: -0.00086593674, y: 0.8609752, z: -0.50864404, w: -0.001461702}
+  m_LocalPosition: {x: -10.368862, y: 21.384178, z: 9.489189}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -45,7 +45,7 @@ public class Stage3EventHandler : MonoBehaviour
         inkSplats.SetActive(true);
         yield return new WaitForSecondsRealtime(1.5f);
         owlRise = true;
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSecondsRealtime(10f);
         transition.goToNextScene();
     }
 }

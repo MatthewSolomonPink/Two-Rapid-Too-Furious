@@ -145,14 +145,15 @@ MonoBehaviour:
   lookAtPoint: {fileID: 0}
   speed: 6
   turnSmoothTime: 0.1
-  stepLayer:
-    serializedVersion: 2
-    m_Bits: 128
+  shouldSing: 0
+  hootClips: []
+  defaultHoot: {fileID: 8300000, guid: c4cd83049cdd49c47a5364b966dac424, type: 3}
   billboard: {fileID: 5815380678441263199}
   stepRayUpper: {fileID: 4317499679861063372}
   stepRayLower: {fileID: 2275185531348376692}
   stepHeight: 0.3
   stepSmooth: 25
+  stage3EventHandler: {fileID: 0}
   BigOwlAudioSource: {fileID: 0}
 --- !u!143 &3254402831222653733
 CharacterController:

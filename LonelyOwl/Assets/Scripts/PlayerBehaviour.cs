@@ -31,6 +31,7 @@ public class PlayerBehaviour : MonoBehaviour
     public bool shouldSing = false;
 
     public List<AudioClip> hootClips = new List<AudioClip>();
+    public AudioClip defaultHoot;
 
     float turnSmoothVelocity;
     float vertical;
@@ -165,8 +166,14 @@ public class PlayerBehaviour : MonoBehaviour
     //public void OnHoot(InputAction.CallbackContext context)
     public void OnHoot()
     {
-        if (void2Breathing || !shouldSing)
+        if (void2Breathing)
         {
+            return;
+        }
+
+        if (!shouldSing)
+        {
+            playerAudioSource.PlayOneShot(defaultHoot);
             return;
         }
 

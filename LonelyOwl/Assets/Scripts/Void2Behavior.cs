@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class Void2Behavior : MonoBehaviour
 {
     [SerializeField] PlayerBehaviour player;
     [SerializeField] int maxBreathing;

@@ -53,6 +53,7 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] float stepSmooth = 0.2f;
 
     [SerializeField] Stage3EventHandler stage3EventHandler;
+    [SerializeField] Animator animator;
 
     private class HootNote : IComparable
     {
@@ -407,6 +408,7 @@ public class PlayerBehaviour : MonoBehaviour
 
         if (direction.magnitude >= 0.1f)
         {
+            animator.SetBool("Walking", true);
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
@@ -423,6 +425,10 @@ public class PlayerBehaviour : MonoBehaviour
             {
                 characterController.Move(moveDir.normalized * speed * Time.deltaTime);
             }
+        }
+        else
+        {
+            animator.SetBool("Walking", false);
         }
     }
 

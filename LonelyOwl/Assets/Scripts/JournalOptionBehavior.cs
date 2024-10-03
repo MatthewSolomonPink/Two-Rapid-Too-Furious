@@ -18,7 +18,7 @@ public class JournalOptionBehavior : MonoBehaviour
     void Start()
     {
         interactable = false;
-        interactAction = InputSystem.actions.FindAction("Interact");
+        //interactAction = InputSystem.actions.FindAction("Interact");
 
         floatingText  = GetComponent<TextMeshPro>();
         c = floatingText.color; 
@@ -29,7 +29,7 @@ public class JournalOptionBehavior : MonoBehaviour
     {
         if (interactable) 
         {
-            if (interactAction.IsPressed())
+            if (Input.GetKeyDown(KeyCode.E))//interactAction.IsPressed())
             {
                 optionText.enabled = true;
                 journalManager.optionSelected(floatingText.text);

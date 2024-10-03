@@ -141,6 +141,11 @@ public class PlayerBehaviour : MonoBehaviour
             StepClimb();
         }
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            OnHoot();  
+        }
+
         //Adjust billboard to face camera
         if (billboard.enabled)
         {
@@ -149,20 +154,21 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
-    public void OnHoot(InputAction.CallbackContext context)
+    //public void OnHoot(InputAction.CallbackContext context)
+    public void OnHoot()
     {
         if (void2Breathing)
         {
             return;
         }
 
-        if (!context.performed)
+       /* if (!context.performed)
         {
             return;
         }
 
         if (context.interaction is PressInteraction)
-        {
+        {*/
             AudioClip c = null;
             if (playerIsPlayingThroughScale)
             {
@@ -213,7 +219,7 @@ public class PlayerBehaviour : MonoBehaviour
             }
 
 
-        }
+        //}
     }
 
     IEnumerator playBigOwlSoundWithDelay(AudioClip clip, float delay, bool isLastInScale)

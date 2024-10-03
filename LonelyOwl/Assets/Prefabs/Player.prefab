@@ -669,6 +669,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6856384120922183316, guid: 8d1a9f6a1a790fb49b800bf71440523b, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f1affde1237c45d448e8cb71510f931c, type: 2}
+    - target: {fileID: -6856384120922183316, guid: 8d1a9f6a1a790fb49b800bf71440523b, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 527432ac0be354840a9e3a7200f4f711, type: 2}
     - target: {fileID: 919132149155446097, guid: 8d1a9f6a1a790fb49b800bf71440523b, type: 3}
       propertyPath: m_Name
       value: Owl_Animation_Idle
@@ -685,6 +693,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8d1a9f6a1a790fb49b800bf71440523b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8074858736312623913}
+    - targetCorrespondingSourceObject: {fileID: -2017532374452281297, guid: 8d1a9f6a1a790fb49b800bf71440523b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6030615092090006166}
   m_SourcePrefab: {fileID: 100100000, guid: 8d1a9f6a1a790fb49b800bf71440523b, type: 3}
 --- !u!4 &3625066522337356153 stripped
 Transform:
@@ -723,6 +734,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &5891873006669704893 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -2017532374452281297, guid: 8d1a9f6a1a790fb49b800bf71440523b, type: 3}
+  m_PrefabInstance: {fileID: 3874340012391222930}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6030615092090006166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5891873006669704893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529a60b9b536ef348aee3a2ef9101fc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neutral: {fileID: 2800000, guid: e7f04076224a256499f3adbc28c17315, type: 3}
+  blink: {fileID: 2800000, guid: c2da06ab3098fb54c86b954581e0b33f, type: 3}
+  happy: {fileID: 2800000, guid: b734651e03c6fb54aaa3ee03bbf25010, type: 3}
+  faceMaterial: {fileID: 2100000, guid: 527432ac0be354840a9e3a7200f4f711, type: 2}
+  isHappy: 0
+  blinkFrequency: 2
+  blinkDuration: 0.2
 --- !u!95 &7255015459549475587 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 8d1a9f6a1a790fb49b800bf71440523b, type: 3}

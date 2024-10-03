@@ -41,7 +41,7 @@ public class HootCheckStage2 : MonoBehaviour
 
     private void Start()
     {
-        stage2Animator = GetComponent<Animator>();
+        //stage2Animator = GetComponent<Animator>();
         AudioSource = GetComponent<AudioSource>() == null ? gameObject.AddComponent<AudioSource>() : GetComponent<AudioSource>();
         animator = GetComponent<StageIICharacterAnimator>();
         stage2Animator.SetBool("Angry_Hood", false);

@@ -128,6 +128,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4451553369173526902, guid: 60c5afb5e4924b4429edda615c5362b2, type: 3}
   m_PrefabInstance: {fileID: 1923939418}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &92999078 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7255015459549475587, guid: 2ac8b6ba2576b2d49aee104b30da841d, type: 3}
+  m_PrefabInstance: {fileID: 1312468464}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &104578942
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2999,7 +3004,7 @@ PrefabInstance:
     - target: {fileID: 8393583034300837868, guid: 2ac8b6ba2576b2d49aee104b30da841d, type: 3}
       propertyPath: animator
       value: 
-      objectReference: {fileID: 1372839953}
+      objectReference: {fileID: 92999078}
     - target: {fileID: 8393583034300837868, guid: 2ac8b6ba2576b2d49aee104b30da841d, type: 3}
       propertyPath: otherCam
       value: 
@@ -3392,7 +3397,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: ObjectiveTrigger
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2407337632659722525, guid: 2cc08e7ad57e1ef488795d61bb73f043, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -3578,6 +3584,14 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 824157974019204338, guid: 8aaae00530a90f74ca36d51230cbed57, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 07e35b0e484549d4697945392bfafa80, type: 2}
+    - target: {fileID: 824157974019204338, guid: 8aaae00530a90f74ca36d51230cbed57, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 18982ad57acc4ed429e4c9d43e539450, type: 2}
     - target: {fileID: 919132149155446097, guid: 8aaae00530a90f74ca36d51230cbed57, type: 3}
       propertyPath: m_Name
       value: Owl_StageII_Animation_Idle_01
@@ -3593,6 +3607,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8aaae00530a90f74ca36d51230cbed57, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1372839952}
+    - targetCorrespondingSourceObject: {fileID: 2803769501767840362, guid: 8aaae00530a90f74ca36d51230cbed57, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1793513983}
   m_SourcePrefab: {fileID: 100100000, guid: 8aaae00530a90f74ca36d51230cbed57, type: 3}
 --- !u!4 &1595083701 stripped
 Transform:
@@ -4187,6 +4204,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -37.03, z: 0}
+--- !u!1 &1793513982 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2803769501767840362, guid: 8aaae00530a90f74ca36d51230cbed57, type: 3}
+  m_PrefabInstance: {fileID: 1554004564}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1793513983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1793513982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4831cbfad694621458acedf6356e2727, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  faces:
+  - {fileID: 2800000, guid: 976731ca290027e4c8b0d0f52b735ee2, type: 3}
+  - {fileID: 2800000, guid: a52e6c6dba1bc6a4dac844bdd1bb53e2, type: 3}
+  - {fileID: 2800000, guid: 946d62d0e12ba4c47a872ead44e466f2, type: 3}
+  faceMaterial: {fileID: 2100000, guid: 18982ad57acc4ed429e4c9d43e539450, type: 2}
+  isAngry: 1
 --- !u!1001 &1828891979
 PrefabInstance:
   m_ObjectHideFlags: 0

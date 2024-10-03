@@ -51,7 +51,7 @@ public class CharacterAnimator : MonoBehaviour
         if (move != 0)
         {
             // Character is walking
-            animator.SetBool("isWalking", true);
+            animator.SetBool("Walking", true);
 
             // Move the character horizontally
             rb.linearVelocity = new Vector2(move * speed, rb.linearVelocity.y);
@@ -69,7 +69,7 @@ public class CharacterAnimator : MonoBehaviour
         else
         {
             // Character is idle
-            animator.SetBool("isWalking", false);
+            animator.SetBool("Walking", false);
 
             // Set velocity to zero for idle
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);

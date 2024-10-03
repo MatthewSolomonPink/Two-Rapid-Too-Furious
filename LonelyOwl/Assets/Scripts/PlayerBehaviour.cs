@@ -26,6 +26,9 @@ public class PlayerBehaviour : MonoBehaviour
 
     public float speed = 6f;
     public float turnSmoothTime = 0.1f;
+
+    public bool shouldSing = false;
+
     float turnSmoothVelocity;
     float vertical;
     float horizontal;
@@ -157,7 +160,7 @@ public class PlayerBehaviour : MonoBehaviour
     //public void OnHoot(InputAction.CallbackContext context)
     public void OnHoot()
     {
-        if (void2Breathing)
+        if (void2Breathing || !shouldSing)
         {
             return;
         }

@@ -30,6 +30,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     public bool shouldSing = false;
 
+    public List<AudioClip> hootClips = new List<AudioClip>();
+
     float turnSmoothVelocity;
     float vertical;
     float horizontal;
@@ -110,13 +112,13 @@ public class PlayerBehaviour : MonoBehaviour
             stepHeight, stepRayUpper.transform.position.z);
 
 
-        var hootFiles = Directory.GetFiles("Assets\\Sounds\\Generic_Hoots", "*.wav", SearchOption.TopDirectoryOnly);
+        //var hootFiles = Directory.GetFiles("Assets\\Sounds\\Generic_Hoots", "*.wav", SearchOption.TopDirectoryOnly);
 
-        foreach (var f in hootFiles)
+        foreach (var clip in hootClips)
         {
             // Turns out AudioClip has a name property lol
             //var name = f.Split("\\")[3].Replace(".wav", "");
-            var clip = AssetDatabase.LoadAssetAtPath<AudioClip>(f);
+            //var clip = AssetDatabase.LoadAssetAtPath<AudioClip>(f);
             //Debug.Log(f);
             //var clip = Resources.Load<AudioClip>(f);
             var hoot = new HootNote(clip.name, clip);

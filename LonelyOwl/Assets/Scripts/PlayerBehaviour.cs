@@ -1,15 +1,16 @@
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UIElements; 
 using UnityEngine.SceneManagement;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
+//using static UnityEditor.Searcher.SearcherWindow.Alignment; //Problem
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 using System.Collections.Generic;
 using System;
 using UnityEditor;
+
 using System.IO;
 using System.Linq;
-using UnityEditor.SceneManagement;
+//using UnityEditor.SceneManagement; //Problem
 using System.Collections;
 using UnityEngine.Audio;
 using TMPro;
@@ -26,6 +27,12 @@ public class PlayerBehaviour : MonoBehaviour
 
     public float speed = 6f;
     public float turnSmoothTime = 0.1f;
+
+    public bool shouldSing = false;
+
+    public List<AudioClip> hootClips = new List<AudioClip>();
+    public AudioClip defaultHoot;
+
     float turnSmoothVelocity;
     float vertical;
     float horizontal;
@@ -107,13 +114,15 @@ public class PlayerBehaviour : MonoBehaviour
             stepHeight, stepRayUpper.transform.position.z);
 
 
-        var hootFiles = Directory.GetFiles("Assets\\Sounds\\Generic_Hoots", "*.wav", SearchOption.TopDirectoryOnly);
+        //var hootFiles = Directory.GetFiles("Assets\\Sounds\\Generic_Hoots", "*.wav", SearchOption.TopDirectoryOnly);
 
-        foreach (var f in hootFiles)
+        foreach (var clip in hootClips)
         {
             // Turns out AudioClip has a name property lol
             //var name = f.Split("\\")[3].Replace(".wav", "");
-            var clip = AssetDatabase.LoadAssetAtPath<AudioClip>(f);
+            //var clip = AssetDatabase.LoadAssetAtPath<AudioClip>(f);
+            //Debug.Log(f);
+            //var clip = Resources.Load<AudioClip>(f);
             var hoot = new HootNote(clip.name, clip);
 
             if (hoot.Octave >= 3)
@@ -160,6 +169,12 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (void2Breathing)
         {
+            return;
+        }
+
+        if (!shouldSing)
+        {
+            playerAudioSource.PlayOneShot(defaultHoot);
             return;
         }
 

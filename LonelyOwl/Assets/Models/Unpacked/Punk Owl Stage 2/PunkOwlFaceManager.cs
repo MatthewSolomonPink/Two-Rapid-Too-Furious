@@ -31,7 +31,7 @@ public class PunkOwlFaceManager : MonoBehaviour
     void Update()
     {
         openEyes = isAngry ? 2 : 0;
-        Debug.Log(openEyes);
+        //Debug.Log(openEyes);
         if (currentTime > 2.2f)
         {
             currentTime = 0f;

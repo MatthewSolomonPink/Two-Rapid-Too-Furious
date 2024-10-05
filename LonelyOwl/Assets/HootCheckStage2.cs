@@ -1,4 +1,5 @@
-using System.Collections;
+﻿using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -13,8 +14,25 @@ public class HootCheckStage2 : MonoBehaviour
     [SerializeField] private GameObject manager;
     [SerializeField] private GameObject objects;
     [SerializeField] private TransitionBehavior transition;
+    [SerializeField] Animator stage2Animator;
 
     private float yVal = 0;
+    private StageIICharacterAnimator animator;
+    private void TriggerAngryHoodAnimation()
+    {
+        // 设置 Animator 的 AngryHood 参数为 true
+        stage2Animator.SetBool("Angry_Hood", true);
+
+        // 你也可以考虑在这里使用协程来控制动画的持续时间
+        StartCoroutine(ResetAngryHoodAnimation());
+    }
+
+    private IEnumerator ResetAngryHoodAnimation()
+    {
+        // 等待一段时间再将 AngryHood 设置为 false
+        yield return new WaitForSeconds(1f);
+        stage2Animator.SetBool("Angry_Hood", false);
+    }
 
     private AudioSource AudioSource;
 
@@ -23,8 +41,10 @@ public class HootCheckStage2 : MonoBehaviour
 
     private void Start()
     {
+        //stage2Animator = GetComponent<Animator>();
         AudioSource = GetComponent<AudioSource>() == null ? gameObject.AddComponent<AudioSource>() : GetComponent<AudioSource>();
-
+        animator = GetComponent<StageIICharacterAnimator>();
+        stage2Animator.SetBool("Angry_Hood", false);
     }
 
 
@@ -55,6 +75,16 @@ public class HootCheckStage2 : MonoBehaviour
             StartCoroutine(nextStage(waitTime));
         }
 
+        //Set the animator
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            stage2Animator.SetBool("Angry_Hood", true);
+        }
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            stage2Animator.SetBool("Angry_Hood", false);
+        }
+
         if (fired)
         {
             yVal += Time.deltaTime * speed;
@@ -67,25 +97,36 @@ public class HootCheckStage2 : MonoBehaviour
     public IEnumerator nextStage(float secondsToWait)
     {
         yield return new WaitForSecondsRealtime(.5f);
-        if (m_AudioClip != null) 
-        { 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TriggerAngryHoodAnimation();
+        }
+        if (m_AudioClip != null)
+        {
+            // Triggers Screech
             AudioSource.PlayOneShot(m_AudioClip);
             yield return new WaitForSecondsRealtime(.5f);
             AudioSource.PlayOneShot(m_AudioClip);
             yield return new WaitForSecondsRealtime(.2f);
             AudioSource.PlayOneShot(m_AudioClip);
+
         }
         Stage2EventHandler levelEvent = manager.GetComponent<Stage2EventHandler>();
         levelEvent.playerInteracted = true;
 
+
         yield return new WaitForSecondsRealtime(secondsToWait);
 
-        /*int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        /* int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         Debug.Log("Load Next Scene");
         SceneManager.LoadSceneAsync(currentSceneIndex + 1);*/
 
-        
+
         transition.goToNextScene();
     }
 
+
 }
+
+
+
